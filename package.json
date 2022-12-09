@@ -14,6 +14,8 @@
     "@types/node": "^16.7.13",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
@@ -35,13 +37,36 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "lint": "eslint src",
     "lint-staged": "lint-staged",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest",
+      "plugin:prettier/recommended",
+      "prettier"
+    ],
+    "rules": {
+      "curly": "error",
+      "import/newline-after-import": "error",
+      "import/order": "error",
+      "no-console": "warn",
+      "spaced-comment": [
+        "error",
+        "always"
+      ]
+    },
+    "overrides": [
+      {
+        "files": [
+          "src/react-app-env.d.ts"
+        ],
+        "rules": {
+          "spaced-comment": "off"
+        }
+      }
     ]
   },
   "browserslist": {
