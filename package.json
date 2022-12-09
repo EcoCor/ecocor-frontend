@@ -20,10 +20,22 @@
     "typescript": "^4.4.2",
     "web-vitals": "^2.1.0"
   },
+  "devDependencies": {
+    "husky": "^8.0.2",
+    "lint-staged": "^13.1.0",
+    "prettier": "^2.8.1"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write"
+    ]
+  },
   "scripts": {
+    "prepare": "husky install",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "lint-staged": "lint-staged",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
