@@ -24,7 +24,7 @@ export const handlers = [
     }
   }),
 
-  rest.get(`${apiBase}/corpora/:corpusId/work/:workName`, (req, res, ctx) => {
+  rest.get(`${apiBase}/corpora/:corpusId/works/:workName`, (req, res, ctx) => {
     const { corpusId, workName } = req.params;
     const corpus = corpusData[corpusId as string];
     if (corpus) {
