@@ -1,0 +1,30 @@
+[
+  {
+    "name": "de",
+    "title": "German EcoCor",
+    "description": "See the [README on GitHub](https://github.com/dracor-org/eco_de).",
+    "repository": "https://github.com/dracor-org/eco_de",
+    "licence": "CC0",
+    "licenceUrl": "https://creativecommons.org/share-your-work/public-domain/cc0/",
+    "uri": "https://ecocor.org/api/corpora/de",
+    "metrics": {
+      "works": 12,
+      "authors": 3,
+      "words": 456789
+    }
+  },
+  {
+    "name": "en",
+    "title": "English EcoCor",
+    "description": "See the [README on GitHub](https://github.com/dracor-org/eco_en).",
+    "repository": "https://github.com/dracor-org/eco_en",
+    "licence": "CC0",
+    "licenceUrl": "https://creativecommons.org/share-your-work/public-domain/cc0/",
+    "uri": "https://ecocor.org/api/corpora/en",
+    "metrics": {
+      "works": 9,
+      "authors": 8,
+      "words": 7654321
+    }
+  }
+]

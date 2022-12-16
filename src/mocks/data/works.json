@@ -1,0 +1,22 @@
+{
+  "name": "en",
+  "title": "English EcoCor",
+  "description": "See the [README on GitHub](https://github.com/dracor-org/eco_en).",
+  "repository": "https://github.com/dracor-org/eco_en",
+  "licence": "CC0",
+  "licenceUrl": "https://creativecommons.org/share-your-work/public-domain/cc0/",
+  "uri": "https://ecocor.org/api/corpora/en",
+  "works": [
+    {
+      "id": "en000001",
+      "name": "1818_Shelley_Frankenstein",
+      "title": "Frankenstein",
+      "authors": [
+        {
+          "name": "Mary Shelly",
+          "wikidataId": "Q47152"
+        }
+      ]
+    }
+  ]
+}
