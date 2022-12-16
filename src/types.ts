@@ -7,6 +7,8 @@ export interface Work {
   name: string;
   authors: Author[];
   title: string;
+  source: string;
+  sourceUrl: string;
 }
 
 export interface CorpusListEntry {
