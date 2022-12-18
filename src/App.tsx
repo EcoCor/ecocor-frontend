@@ -9,12 +9,14 @@ function App() {
   return (
     <BrowserRouter>
       <Topnav />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/corpora" element={<Corpora />} />
-        <Route path="/corpora/:id" element={<Corpus />} />
-        <Route path="/corpora/:corpusId/:workId" element={<Work />} />
-      </Routes>
+      <div className="p-4">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/corpora" element={<Corpora />} />
+          <Route path="/corpora/:id" element={<Corpus />} />
+          <Route path="/corpora/:corpusId/:workId" element={<Work />} />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }
