@@ -68,6 +68,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-family: Rubik;
+    @apply bg-neutral-100;
   }
 
   a {
