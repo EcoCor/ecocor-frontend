@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import { Navigate } from 'react-router-dom';
 
 export default function Home() {
   return (
@@ -6,9 +7,7 @@ export default function Home() {
       <Helmet>
         <title>EcoCor</title>
       </Helmet>
-      <section>
-        <h1>Welcome to EcoCor</h1>
-      </section>
+      <Navigate to="/corpora" />
     </div>
   );
 }
