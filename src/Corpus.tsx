@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, useParams } from 'react-router-dom';
+import { ColumnDef } from '@tanstack/react-table';
 import { getCorpus } from './api';
-import { CorpusData } from './types';
+import { CorpusData, Work } from './types';
+import Table from './Table';
 
 export default function Corpus() {
   const { id } = useParams<{ id: string }>();
@@ -30,6 +32,40 @@ export default function Corpus() {
     };
   }, []);
 
+  const columns = useMemo<ColumnDef<Work>[]>(
+    () => [
+      {
+        accessorKey: 'title',
+        header: 'Title',
+        cell: (info) => (
+          <Link className="text-lg" to={info.row.original.name}>
+            {`${info.getValue()}`}
+          </Link>
+        ),
+      },
+      {
+        accessorKey: 'authors',
+        header: 'Author',
+        accessorFn: (row) => {
+          const { authors = [] } = row;
+          return authors.map((a) => a.name).join(' ');
+        },
+        cell: (info) => info.row.original.authors.map((a) => a.name).join(', '),
+      },
+      {
+        accessorKey: 'source',
+        header: 'Source',
+        cell: (info) =>
+          info.row.original.sourceUrl ? (
+            <Link to={info.row.original.sourceUrl}>{`${info.getValue()}`}</Link>
+          ) : (
+            info.getValue()
+          ),
+      },
+    ],
+    []
+  );
+
   return (
     <div>
       <Helmet>
@@ -39,13 +75,7 @@ export default function Corpus() {
       {corpus && (
         <section>
           <h1>{corpus.title}</h1>
-          <ol>
-            {corpus.works.map((work) => (
-              <li key={work.name}>
-                <Link to={`/corpora/${id}/${work.name}`}>{work.title}</Link>
-              </li>
-            ))}
-          </ol>
+          <Table data={corpus.works} columns={columns} />
         </section>
       )}
     </div>
