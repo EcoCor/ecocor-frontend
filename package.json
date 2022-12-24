@@ -52,7 +52,8 @@
     "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!axios)/\" --env=jsdom",
     "lint": "eslint src",
     "lint-staged": "lint-staged",
-    "eject": "react-scripts eject"
+    "preversion": "./scripts/preversion.sh && yarn test --watchAll=false && yarn build",
+    "postversion": "git push && git push origin v$npm_package_version"
   },
   "eslintConfig": {
     "extends": [
