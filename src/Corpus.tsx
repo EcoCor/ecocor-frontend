@@ -30,6 +30,7 @@ export default function Corpus() {
     return () => {
       isMounted = false;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const columns = useMemo<ColumnDef<Work>[]>(
