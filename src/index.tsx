@@ -5,7 +5,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-if (process.env.NODE_ENV === 'development') {
+// for now we enable mocking in all environments
+if (process.env.NODE_ENV === 'development' || true) {
   const { worker } = require('./mocks/browser');
   worker.start();
 }
