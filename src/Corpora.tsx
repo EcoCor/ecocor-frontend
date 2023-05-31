@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
 import { getCorpora } from './api';
 import { CorpusListEntry } from './types';
+import CorpusCard from './CorpusCard';
 
 export default function Corpora() {
   const [corpora, setCorpora] = useState<CorpusListEntry[]>([]);
@@ -32,18 +32,15 @@ export default function Corpora() {
   return (
     <div>
       <Helmet>
-        <title>Corpora</title>
+        <title>EcoCor: Corpora</title>
       </Helmet>
       <section>
-        <h1>Corpora</h1>
         {loading && <p>loading...</p>}
-        <ul>
+        <div className="flex flex-row justify-center pb-4">
           {corpora.map((corpus) => (
-            <li key={corpus.name}>
-              <Link to={corpus.name}>{corpus.title}</Link>
-            </li>
+            <CorpusCard corpus={corpus} key={corpus.name} />
           ))}
-        </ul>
+        </div>
       </section>
     </div>
   );

@@ -11,6 +11,12 @@ export interface Work {
   sourceUrl: string;
 }
 
+export interface CorpusMetrics {
+  works: number;
+  authors: number;
+  words: number;
+}
+
 export interface CorpusListEntry {
   name: string;
   title: string;
@@ -19,6 +25,7 @@ export interface CorpusListEntry {
   license: string;
   licenseUrl: string;
   uri: string;
+  metrics?: CorpusMetrics;
 }
 
 export interface CorpusData {
