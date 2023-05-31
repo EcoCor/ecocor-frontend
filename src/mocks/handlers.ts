@@ -1,13 +1,11 @@
 import { rest } from 'msw';
-import { CorpusListEntry, CorpusData } from '../types';
+import { CorpusData, Work } from '../types';
 
-const corpora: CorpusListEntry[] = require('./data/corpora.json');
-const works: CorpusData = require('./data/works.json');
+const corpora: CorpusData[] = require('./data/corpora.json');
+const worksMap: { [index: string]: Work[] } = require('./data/works.json');
 
 const apiBase = process.env.REACT_APP_ECOCOR_API;
 const delay = parseInt(process.env.REACT_APP_MOCK_API_DELAY || '0');
-
-const corpusData: { [index: string]: CorpusData } = { works };
 
 export const handlers = [
   rest.get(`${apiBase}/corpora`, (req, res, ctx) => {
@@ -16,7 +14,7 @@ export const handlers = [
 
   rest.get(`${apiBase}/corpora/:corpusId`, (req, res, ctx) => {
     const { corpusId } = req.params;
-    const corpus = corpusData[corpusId as string];
+    const corpus = corpora.find((c) => c.name === corpusId);
     if (corpus) {
       return res(ctx.status(200), ctx.delay(delay), ctx.json(corpus));
     } else {
@@ -24,11 +22,21 @@ export const handlers = [
     }
   }),
 
+  rest.get(`${apiBase}/corpora/:corpusId/works`, (req, res, ctx) => {
+    const { corpusId } = req.params;
+    const works = worksMap[corpusId as string];
+    if (works) {
+      return res(ctx.status(200), ctx.delay(delay), ctx.json(works));
+    } else {
+      return res(ctx.status(404), ctx.json({ message: 'no such corpus' }));
+    }
+  }),
+
   rest.get(`${apiBase}/corpora/:corpusId/works/:workName`, (req, res, ctx) => {
     const { corpusId, workName } = req.params;
-    const corpus = corpusData[corpusId as string];
-    if (corpus) {
-      const work = corpus.works.find((p) => p.name === workName);
+    const works = worksMap[corpusId as string];
+    if (works) {
+      const work = works.find((w) => w.name === workName);
       if (work) {
         return res(ctx.status(200), ctx.delay(delay), ctx.json(work));
       }

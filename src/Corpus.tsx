@@ -2,13 +2,14 @@ import { useEffect, useState, useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, useParams } from 'react-router-dom';
 import { ColumnDef } from '@tanstack/react-table';
-import { getCorpus } from './api';
+import { getCorpus, getCorpusWorks } from './api';
 import { CorpusData, Work } from './types';
 import Table from './Table';
 
 export default function Corpus() {
   const { id } = useParams<{ id: string }>();
   const [corpus, setCorpus] = useState<CorpusData>();
+  const [works, setWorks] = useState<Work[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
@@ -19,6 +20,14 @@ export default function Corpus() {
         const resp = await getCorpus(id!);
         if (isMounted) {
           setCorpus(resp.data);
+        }
+      } catch (error) {
+        alert('Cannot load corpus');
+      }
+      try {
+        const resp = await getCorpusWorks(id!);
+        if (isMounted) {
+          setWorks(resp.data);
         }
       } catch (error) {
         alert('Cannot load corpus');
@@ -76,7 +85,7 @@ export default function Corpus() {
       {corpus && (
         <section>
           <h1>{corpus.title}</h1>
-          <Table data={corpus.works} columns={columns} />
+          {works.length && <Table data={works} columns={columns} />}
         </section>
       )}
     </div>

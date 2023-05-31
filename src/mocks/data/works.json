@@ -1,20 +1,26 @@
 {
-  "name": "en",
-  "title": "English EcoCor",
-  "description": "See the [README on GitHub](https://github.com/dracor-org/eco_en).",
-  "repository": "https://github.com/dracor-org/eco_en",
-  "licence": "CC0",
-  "licenceUrl": "https://creativecommons.org/share-your-work/public-domain/cc0/",
-  "uri": "https://ecocor.org/api/corpora/en",
-  "works": [
+  "en": [
     {
-      "id": "en000001",
+      "id": "eco000005",
       "name": "1818_Shelley_Frankenstein",
       "title": "Frankenstein",
       "authors": [
         {
           "name": "Mary Shelly",
           "wikidataId": "Q47152"
+        }
+      ]
+    }
+  ],
+  "de": [
+    {
+      "id": "eco000031",
+      "name": "1796_Goethe_Lehrjahre",
+      "title": "Wilhelm Meisters Lehrjahre",
+      "authors": [
+        {
+          "name": "Johann Wolfgang von Goethe",
+          "wikidataId": "Q5879"
         }
       ]
     }

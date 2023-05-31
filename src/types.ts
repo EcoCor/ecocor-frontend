@@ -32,5 +32,9 @@ export interface CorpusData {
   name: string;
   title: string;
   description: string;
-  works: Work[];
+  repository: string;
+  license: string;
+  licenseUrl: string;
+  uri: string;
+  metrics?: CorpusMetrics;
 }
