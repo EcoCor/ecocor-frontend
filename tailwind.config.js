@@ -3,6 +3,16 @@ module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
+      animation: {
+        'spin-slow': 'reverse-spin 120s linear infinite',
+      },
+      keyframes: {
+        'reverse-spin': {
+          from: {
+            transform: 'rotate(360deg)'
+          },
+        },
+      },
       colors: {
         primary: '#1f2448',
         secondary: {
