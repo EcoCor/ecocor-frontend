@@ -15,6 +15,9 @@ export interface CorpusMetrics {
   texts: number;
   authors: number;
   words: number;
+  entities: number;
+  animals: number;
+  plants: number;
 }
 
 export interface CorpusListEntry {

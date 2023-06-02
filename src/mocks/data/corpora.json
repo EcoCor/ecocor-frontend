@@ -10,7 +10,10 @@
     "metrics": {
       "texts": 12,
       "authors": 3,
-      "words": 456789
+      "words": 456789,
+      "entities": 78,
+      "animals": 53,
+      "plants": 25
     }
   },
   {
@@ -24,7 +27,10 @@
     "metrics": {
       "texts": 9,
       "authors": 8,
-      "words": 7654321
+      "words": 7654321,
+      "entities": 66,
+      "animals": 44,
+      "plants": 22
     }
   }
 ]

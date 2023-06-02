@@ -52,6 +52,9 @@ export default function CorpusCard({ corpus }: { corpus: CorpusListEntry }) {
             />
             <CorpusCardRow label="Number of authors" data={metrics.authors} />
             <CorpusCardRow label="Number of Words" data={metrics.words} />
+            <CorpusCardRow label="Number of Entities" data={metrics.entities} />
+            <CorpusCardRow label="Number of Animals" data={metrics.animals} />
+            <CorpusCardRow label="Number of Plants" data={metrics.plants} />
           </tbody>
         </table>
       )}
