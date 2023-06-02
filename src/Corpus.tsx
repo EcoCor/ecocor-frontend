@@ -62,16 +62,16 @@ export default function Corpus() {
         },
         cell: (info) => info.row.original.authors.map((a) => a.name).join(', '),
       },
-      {
-        accessorKey: 'source',
-        header: 'Source',
-        cell: (info) =>
-          info.row.original.sourceUrl ? (
-            <Link to={info.row.original.sourceUrl}>{`${info.getValue()}`}</Link>
-          ) : (
-            info.getValue()
-          ),
-      },
+      // {
+      //   accessorKey: 'source',
+      //   header: 'Source',
+      //   cell: (info) =>
+      //     info.row.original.sourceUrl ? (
+      //       <Link to={info.row.original.sourceUrl}>{`${info.getValue()}`}</Link>
+      //     ) : (
+      //       info.getValue()
+      //     ),
+      // },
     ],
     []
   );
@@ -85,7 +85,7 @@ export default function Corpus() {
       {corpus && (
         <section>
           <h1>{corpus.title}</h1>
-          {texts.length && <Table data={texts} columns={columns} />}
+          {texts.length > 0 && <Table data={texts} columns={columns} />}
         </section>
       )}
     </div>

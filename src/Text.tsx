@@ -47,11 +47,11 @@ export default function Text() {
         <section>
           <h2>{authors}</h2>
           <h1>{text.title}</h1>
-          {text.source && (
+          {/* {text.source && (
             <p>
               Source: <a href={text.sourceUrl}>{text.source}</a>
             </p>
-          )}
+          )} */}
         </section>
       )}
     </div>
