@@ -10,11 +10,11 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import DebouncedInput from './DebouncedInput';
-import { Work } from './types';
+import { Text } from './types';
 
 interface Props {
   data: any[];
-  columns: ColumnDef<Work>[];
+  columns: ColumnDef<Text>[];
   defaultSort?: SortingState;
 }
 

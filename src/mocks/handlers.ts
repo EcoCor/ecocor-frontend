@@ -1,8 +1,8 @@
 import { rest } from 'msw';
-import { CorpusData, Work } from '../types';
+import { CorpusData, Text } from '../types';
 
 const corpora: CorpusData[] = require('./data/corpora.json');
-const worksMap: { [index: string]: Work[] } = require('./data/works.json');
+const textsMap: { [index: string]: Text[] } = require('./data/texts.json');
 
 const apiBase = process.env.REACT_APP_ECOCOR_API;
 const delay = parseInt(process.env.REACT_APP_MOCK_API_DELAY || '0');
@@ -22,25 +22,25 @@ export const handlers = [
     }
   }),
 
-  rest.get(`${apiBase}/corpora/:corpusId/works`, (req, res, ctx) => {
+  rest.get(`${apiBase}/corpora/:corpusId/texts`, (req, res, ctx) => {
     const { corpusId } = req.params;
-    const works = worksMap[corpusId as string];
-    if (works) {
-      return res(ctx.status(200), ctx.delay(delay), ctx.json(works));
+    const texts = textsMap[corpusId as string];
+    if (texts) {
+      return res(ctx.status(200), ctx.delay(delay), ctx.json(texts));
     } else {
       return res(ctx.status(404), ctx.json({ message: 'no such corpus' }));
     }
   }),
 
-  rest.get(`${apiBase}/corpora/:corpusId/works/:workName`, (req, res, ctx) => {
-    const { corpusId, workName } = req.params;
-    const works = worksMap[corpusId as string];
-    if (works) {
-      const work = works.find((w) => w.name === workName);
-      if (work) {
-        return res(ctx.status(200), ctx.delay(delay), ctx.json(work));
+  rest.get(`${apiBase}/corpora/:corpusId/texts/:textName`, (req, res, ctx) => {
+    const { corpusId, textName } = req.params;
+    const texts = textsMap[corpusId as string];
+    if (texts) {
+      const text = texts.find((w) => w.name === textName);
+      if (text) {
+        return res(ctx.status(200), ctx.delay(delay), ctx.json(text));
       }
-      return res(ctx.status(404), ctx.json({ message: 'no such work' }));
+      return res(ctx.status(404), ctx.json({ message: 'no such text' }));
     } else {
       return res(ctx.status(404), ctx.json({ message: 'no such corpus' }));
     }

@@ -46,8 +46,8 @@ export default function CorpusCard({ corpus }: { corpus: CorpusListEntry }) {
         <table className="m-0">
           <tbody>
             <CorpusCardRow
-              label="Number of works"
-              data={metrics.works}
+              label="Number of texts"
+              data={metrics.texts}
               dataStyle={classnames(fontSize('text-2xl'))}
             />
             <CorpusCardRow label="Number of authors" data={metrics.authors} />

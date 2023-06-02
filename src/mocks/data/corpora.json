@@ -8,7 +8,7 @@
     "licenceUrl": "https://creativecommons.org/share-your-work/public-domain/cc0/",
     "uri": "https://ecocor.org/api/corpora/de",
     "metrics": {
-      "works": 12,
+      "texts": 12,
       "authors": 3,
       "words": 456789
     }
@@ -22,7 +22,7 @@
     "licenceUrl": "https://creativecommons.org/share-your-work/public-domain/cc0/",
     "uri": "https://ecocor.org/api/corpora/en",
     "metrics": {
-      "works": 9,
+      "texts": 9,
       "authors": 8,
       "words": 7654321
     }

@@ -2,7 +2,7 @@ export interface Author {
   name: string;
 }
 
-export interface Work {
+export interface Text {
   id: string;
   name: string;
   authors: Author[];
@@ -12,7 +12,7 @@ export interface Work {
 }
 
 export interface CorpusMetrics {
-  works: number;
+  texts: number;
   authors: number;
   words: number;
 }

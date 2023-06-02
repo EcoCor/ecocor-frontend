@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
-import { getWork } from './api';
-import { Work as WorkData } from './types';
+import { getText } from './api';
+import { Text as TextData } from './types';
 
-export default function Work() {
-  const { corpusId, workId } = useParams<{
+export default function Text() {
+  const { corpusId, textId } = useParams<{
     corpusId: string;
-    workId: string;
+    textId: string;
   }>();
-  const [work, setWork] = useState<WorkData>();
+  const [text, setText] = useState<TextData>();
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
@@ -17,12 +17,12 @@ export default function Work() {
     (async function () {
       setLoading(true);
       try {
-        const resp = await getWork(corpusId!, workId!);
+        const resp = await getText(corpusId!, textId!);
         if (isMounted) {
-          setWork(resp.data);
+          setText(resp.data);
         }
       } catch (error) {
-        alert('Cannot load work');
+        alert('Cannot load text');
       }
       if (isMounted) {
         setLoading(false);
@@ -34,8 +34,8 @@ export default function Work() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const authors = work?.authors?.map((a) => a.name).join(', ');
-  const authorTitle = work ? `${authors}: ${work.title}` : '';
+  const authors = text?.authors?.map((a) => a.name).join(', ');
+  const authorTitle = text ? `${authors}: ${text.title}` : '';
 
   return (
     <div>
@@ -43,13 +43,13 @@ export default function Work() {
         <title>{authorTitle}</title>
       </Helmet>
       {loading && <p>loading...</p>}
-      {work && (
+      {text && (
         <section>
           <h2>{authors}</h2>
-          <h1>{work.title}</h1>
-          {work.source && (
+          <h1>{text.title}</h1>
+          {text.source && (
             <p>
-              Source: <a href={work.sourceUrl}>{work.source}</a>
+              Source: <a href={text.sourceUrl}>{text.source}</a>
             </p>
           )}
         </section>

@@ -2,14 +2,14 @@ import { useEffect, useState, useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, useParams } from 'react-router-dom';
 import { ColumnDef } from '@tanstack/react-table';
-import { getCorpus, getCorpusWorks } from './api';
-import { CorpusData, Work } from './types';
+import { getCorpus, getCorpusTexts } from './api';
+import { CorpusData, Text } from './types';
 import Table from './Table';
 
 export default function Corpus() {
   const { id } = useParams<{ id: string }>();
   const [corpus, setCorpus] = useState<CorpusData>();
-  const [works, setWorks] = useState<Work[]>([]);
+  const [texts, setTexts] = useState<Text[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
@@ -25,9 +25,9 @@ export default function Corpus() {
         alert('Cannot load corpus');
       }
       try {
-        const resp = await getCorpusWorks(id!);
+        const resp = await getCorpusTexts(id!);
         if (isMounted) {
-          setWorks(resp.data);
+          setTexts(resp.data);
         }
       } catch (error) {
         alert('Cannot load corpus');
@@ -42,7 +42,7 @@ export default function Corpus() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const columns = useMemo<ColumnDef<Work>[]>(
+  const columns = useMemo<ColumnDef<Text>[]>(
     () => [
       {
         accessorKey: 'title',
@@ -85,7 +85,7 @@ export default function Corpus() {
       {corpus && (
         <section>
           <h1>{corpus.title}</h1>
-          {works.length && <Table data={works} columns={columns} />}
+          {texts.length && <Table data={texts} columns={columns} />}
         </section>
       )}
     </div>
