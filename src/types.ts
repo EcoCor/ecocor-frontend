@@ -41,3 +41,9 @@ export interface CorpusData {
   uri: string;
   metrics?: CorpusMetrics;
 }
+
+export interface Entity {
+  id: string;
+  name: string;
+  count: number;
+}

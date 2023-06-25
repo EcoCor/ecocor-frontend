@@ -4,7 +4,7 @@ import axios, {
   CancelTokenSource,
   AxiosResponse,
 } from 'axios';
-import { CorpusData, Text } from './types';
+import { CorpusData, Text, Entity } from './types';
 
 const apiUrl = process.env.REACT_APP_ECOCOR_API;
 
@@ -45,6 +45,13 @@ export async function getCorpusTexts(
 ): Promise<AxiosResponse<Text[]>> {
   const url = `${apiUrl}/corpora/${corpusName}/texts`;
   return await fetchData<Text[]>(url);
+}
+
+export async function getCorpusEntities(
+  corpusName: string
+): Promise<AxiosResponse<Entity[]>> {
+  const url = `${apiUrl}/corpora/${corpusName}/entities`;
+  return await fetchData<Entity[]>(url);
 }
 
 export async function getText(
