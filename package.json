@@ -25,6 +25,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet-async": "^1.3.0",
+    "react-markdown": "^8.0.7",
     "react-router-dom": "^6.4.5",
     "react-scripts": "5.0.1",
     "react-wordcloud": "^1.2.7",
