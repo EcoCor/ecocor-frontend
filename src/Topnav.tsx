@@ -21,7 +21,7 @@ export default function Topnav() {
       </h1>
       <div>
         <a
-          href="https://github.com/dh-network/ecocor-api"
+          href="https://github.com/EcoCor"
           title="EcoCor Github"
           className="text-white"
         >
