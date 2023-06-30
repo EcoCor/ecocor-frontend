@@ -80,7 +80,32 @@
   }
 
   h1 {
-    @apply text-4xl mb-1 mt-0 font-medium;
+    @apply text-4xl mb-2 mt-0 font-medium;
+  }
+
+  h2 {
+    @apply text-3xl mb-2 mt-2 font-medium;
+  }
+
+  h3 {
+    @apply text-xl mb-2 mt-2 font-medium;
+  }
+
+  h4 {
+    @apply text-lg mb-2 mt-2 font-medium;
+  }
+
+  p,
+  ul {
+    @apply mb-2;
+  }
+
+  ul {
+    @apply list-inside list-disc space-y-1;
+  }
+
+  li {
+    @apply list-item;
   }
 
   table {
