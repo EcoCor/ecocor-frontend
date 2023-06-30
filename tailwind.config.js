@@ -9,7 +9,7 @@ module.exports = {
       keyframes: {
         'reverse-spin': {
           from: {
-            transform: 'rotate(360deg)'
+            transform: 'rotate(360deg)',
           },
         },
       },
