@@ -21,12 +21,12 @@ function App() {
       <div className="p-4">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/doc/:id" element={<DocPage match={matchDocPath} />} />
-          <Route path="/about" element={<DocPage url="/doc/about.md" />} />
           <Route path="/corpora" element={<Corpora />} />
           <Route path="/corpora/:id" element={<Corpus />} />
           <Route path="/corpora/:id/entities" element={<CorpusEntities />} />
           <Route path="/corpora/:corpusId/:textId" element={<Text />} />
+          <Route path="/doc/:id" element={<DocPage match={matchDocPath} />} />
+          <Route path="/merch" element={<DocPage url="/doc/merch.md" />} />
         </Routes>
       </div>
     </BrowserRouter>
