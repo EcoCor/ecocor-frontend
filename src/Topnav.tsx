@@ -1,33 +1,34 @@
-import { Link } from 'react-router-dom';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { NavBar } from '@dracor.org/react';
 import packageInfo from '../package.json';
 import logo from './images/ecocor.svg';
 
 export default function Topnav() {
   return (
-    <nav className="flex items-center justify-between flex-wrap p-4 bg-primary text-white font-medium">
-      <img
-        alt="EcoCor Logo"
-        title="EcoCor"
-        className="animate-spin-slow infinite w-12"
-        src={logo}
-      ></img>
-      <h1>
-        <Link to="/" className="text-white hover:text-white font-light">
-          EcoCor
-        </Link>{' '}
-        <span className="text-xs ml-1">v{packageInfo.version}</span>
-      </h1>
-      <div>
-        <a
-          href="https://github.com/EcoCor"
-          title="EcoCor Github"
-          className="text-white"
-        >
-          <FontAwesomeIcon icon={faGithub} size="2xl" />
-        </a>
-      </div>
-    </nav>
+    <NavBar
+      title="EcoCor"
+      version={packageInfo.version}
+      logo={logo}
+      logoClass="animate-spin-slow infinite"
+      gitHubUrl="https://github.com/EcoCor"
+      navItems={[
+        {
+          label: 'About',
+          items: [
+            { href: '/doc/about', label: 'What is EcoCor' },
+            { href: '/doc/credits', label: 'Credits' },
+            { href: '/doc/faq', label: 'FAQ' },
+            { href: '/doc/imprint-and-gdpr', label: 'Imprint and GDPR' },
+          ],
+        },
+        {
+          label: 'Corpora',
+          items: [
+            { href: '/corpora/en', label: 'English EcoCor' },
+            { href: '/corpora/de', label: 'German EcoCor' },
+          ],
+        },
+        { label: 'Merch', href: '/merch' },
+      ]}
+    />
   );
 }
