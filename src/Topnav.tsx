@@ -16,7 +16,7 @@ export default function Topnav() {
           items: [
             { href: '/doc/about', label: 'What is EcoCor' },
             { href: '/doc/credits', label: 'Credits' },
-            { href: '/doc/faq', label: 'FAQ' },
+            // { href: '/doc/faq', label: 'FAQ' },
             { href: '/doc/imprint-and-gdpr', label: 'Imprint and GDPR' },
           ],
         },
@@ -27,7 +27,7 @@ export default function Topnav() {
             { href: '/corpora/de', label: 'German EcoCor' },
           ],
         },
-        { label: 'Merch', href: '/merch' },
+        // { label: 'Merch', href: '/merch' },
       ]}
     />
   );
