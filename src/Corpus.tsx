@@ -19,6 +19,7 @@ export default function Corpus() {
     let isMounted = true;
     (async function () {
       setLoading(true);
+      setTexts([]);
       try {
         const resp = await getCorpus(id!);
         if (isMounted) {
@@ -42,13 +43,13 @@ export default function Corpus() {
     return () => {
       isMounted = false;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     let isMounted = true;
     (async function () {
       setLoadingEntities(true);
+      setEntities([]);
       try {
         const resp = await getCorpusEntities(id!);
         if (isMounted) {
@@ -64,8 +65,7 @@ export default function Corpus() {
     return () => {
       isMounted = false;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [id]);
 
   const words = entities.map((e) => ({ text: e.name, value: e.count }));
 
