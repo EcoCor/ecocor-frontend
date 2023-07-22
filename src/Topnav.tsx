@@ -27,6 +27,7 @@ export default function Topnav() {
             { href: '/corpora/de', label: 'German EcoCor' },
           ],
         },
+        { label: 'API', href: '/doc/api' },
         // { label: 'Merch', href: '/merch' },
       ]}
     />
