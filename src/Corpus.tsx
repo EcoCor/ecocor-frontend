@@ -67,7 +67,10 @@ export default function Corpus() {
     };
   }, [id]);
 
-  const words = entities.map((e) => ({ text: e.name, value: e.count }));
+  const words = entities.map(({ name, metrics: { overallFrequency } }) => ({
+    text: name,
+    value: overallFrequency,
+  }));
 
   const columns = useMemo<ColumnDef<Text>[]>(
     () => [

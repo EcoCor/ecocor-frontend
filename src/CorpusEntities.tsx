@@ -59,7 +59,10 @@ export default function CorpusEntities() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const words = entities.map((e) => ({ text: e.name, value: e.count }));
+  const words = entities.map(({ name, metrics: { overallFrequency } }) => ({
+    text: name,
+    value: overallFrequency,
+  }));
 
   return (
     <div>

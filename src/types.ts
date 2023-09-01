@@ -12,12 +12,15 @@ export interface Text {
 }
 
 export interface CorpusMetrics {
-  texts: number;
-  authors: number;
-  words: number;
-  entities: number;
-  animals: number;
-  plants: number;
+  numOfTexts: number;
+  numOfAuthors: number;
+  numOfParagraphs: number;
+  numOfWords: number;
+  numOfEntities: number;
+  numOfEntityTypes: number;
+  numOfAnimals: number;
+  numOfPlants: number;
+  biodiversityIndex: number;
 }
 
 export interface CorpusListEntry {
@@ -29,6 +32,7 @@ export interface CorpusListEntry {
   licenseUrl: string;
   uri: string;
   metrics?: CorpusMetrics;
+  updated?: string;
 }
 
 export interface CorpusData {
@@ -42,8 +46,17 @@ export interface CorpusData {
   metrics?: CorpusMetrics;
 }
 
+export interface EntityOccurrence {
+  id: string;
+  frequency: number;
+  text?: string;
+}
+
 export interface Entity {
   id: string;
   name: string;
-  count: number;
+  metrics: {
+    overallFrequency: number;
+    occurrences: EntityOccurrence[];
+  };
 }
