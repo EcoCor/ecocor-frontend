@@ -1215,10 +1215,10 @@
   resolved "https://registry.yarnpkg.com/@csstools/selector-specificity/-/selector-specificity-2.0.2.tgz#1bfafe4b7ed0f3e4105837e056e0a89b108ebe36"
   integrity sha512-IkpVW/ehM1hWKln4fCA3NzJU8KwD+kIOvPZA4cqxoJHtE21CCzjyp+Kxbu0i5I4tBNOlXPL9mjwnWlL0VEG4Fg==
 
-"@dracor.org/react@^0.6.0":
-  version "0.6.0"
-  resolved "https://registry.npmjs.org/@dracor.org/react/-/react-0.6.0.tgz#72ceb2f0cb3ceb20ce5321d8fed3b7b4f0ca2a41"
-  integrity sha512-2D/cqfHhJRbj3Smn2YykATIwkS4HqqN233L4sPYkVgSj5cdS+9rs3ZuNX6pBteNPD6D4XQ6TcTrrB0Bn+NMrZg==
+"@dracor/react@^0.7.0":
+  version "0.7.0"
+  resolved "https://registry.npmjs.org/@dracor/react/-/react-0.7.0.tgz#e35f62793fbdbfd39d9344395af746b5fc1c7d4b"
+  integrity sha512-zKPGBv8Z/tyUN8tqoy+QdOn6Na9/H4ufw1zQZYQv0LuAqjc4mK3GEIJEEif5SlKSODWEfgXAcIPGFTQwt6QpDQ==
   dependencies:
     tailwindcss-classnames "^3.1.0"
 

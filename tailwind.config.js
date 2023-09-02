@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './node_modules/@dracor.org/react/**/*.js',
+    './node_modules/@dracor/react/**/*.js',
     './src/**/*.{js,jsx,ts,tsx}',
   ],
   theme: {
@@ -18,5 +18,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require('@dracor.org/react/tailwind')],
+  plugins: [require('@dracor/react/tailwind')],
 };
