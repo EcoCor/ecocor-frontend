@@ -1,5 +1,6 @@
 export interface Author {
   name: string;
+  ref?: string;
 }
 
 export interface Text {
@@ -9,6 +10,21 @@ export interface Text {
   title: string;
   source: string;
   sourceUrl: string;
+  dates?: {
+    yearNormalized: string;
+    yearWritten?: string;
+    yearPrinted?: string;
+  };
+  metrics?: {
+    biodiversityIndex: number;
+    numOfAnimals: number;
+    numOfChapters: number;
+    numOfEntities: number;
+    numOfEntityTypes: number;
+    numOfParagraphs: number;
+    numOfPlants: number;
+    numOfWords: number;
+  };
 }
 
 export interface CorpusMetrics {
