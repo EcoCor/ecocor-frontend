@@ -61,3 +61,15 @@ export async function getText(
   const url = `${apiUrl}/corpora/${corpusName}/texts/${textName}`;
   return await fetchData<Text>(url);
 }
+
+export async function getTextEntities(
+  corpusName: string,
+  textName: string,
+  type?: string
+): Promise<AxiosResponse<Entity[]>> {
+  let url = `${apiUrl}/corpora/${corpusName}/texts/${textName}/entities`;
+  if (type) {
+    url += `?type=${encodeURIComponent(type)}`;
+  }
+  return await fetchData<Entity[]>(url);
+}
