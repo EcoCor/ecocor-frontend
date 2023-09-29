@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useParams } from 'react-router-dom';
+import { Outlet, useParams, useLocation } from 'react-router-dom';
+import { IdCopy, Tabs } from '@dracor/react';
 import { getText } from './api';
 import { Text as TextData } from './types';
 
 export default function Text() {
+  const location = useLocation();
   const { corpusId, textId } = useParams<{
     corpusId: string;
     textId: string;
@@ -37,6 +39,18 @@ export default function Text() {
   const authors = text?.authors?.map((a) => a.name).join(', ');
   const authorTitle = text ? `${authors}: ${text.title}` : '';
 
+  const tabs = [
+    { label: 'Entities', href: 'entities', active: false },
+    { label: 'Animals', href: 'animals', active: false },
+    { label: 'Plants', href: 'plants', active: false },
+  ];
+  tabs.forEach((t) => {
+    const tabUrl = `/corpora/${corpusId}/${textId}/${t.href}`;
+    if (tabUrl === location.pathname) {
+      t.active = true;
+    }
+  });
+
   return (
     <div>
       <Helmet>
@@ -45,13 +59,11 @@ export default function Text() {
       {loading && <p>loading...</p>}
       {text && (
         <section>
-          <h2>{authors}</h2>
+          <h2 className="text-sm mb-1">{authors}</h2>
           <h1>{text.title}</h1>
-          {/* {text.source && (
-            <p>
-              Source: <a href={text.sourceUrl}>{text.source}</a>
-            </p>
-          )} */}
+          <IdCopy>{text.id}</IdCopy>
+          <Tabs data={tabs} />
+          <Outlet />
         </section>
       )}
     </div>

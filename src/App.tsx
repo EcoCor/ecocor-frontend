@@ -7,6 +7,8 @@ import CorpusEntities from './CorpusEntities';
 import Text from './Text';
 import DocPage from './DocPage';
 import ApiDoc from './ApiDoc';
+import TextHome from './TextHome';
+import TextEntities from './TextEntities';
 
 function matchDocPath(params: any): string | null {
   if (params.id) {
@@ -25,7 +27,12 @@ function App() {
           <Route path="/corpora" element={<Corpora />} />
           <Route path="/corpora/:id" element={<Corpus />} />
           <Route path="/corpora/:id/entities" element={<CorpusEntities />} />
-          <Route path="/corpora/:corpusId/:textId" element={<Text />} />
+          <Route path="/corpora/:corpusId/:textId" element={<Text />}>
+            <Route index element={<TextHome />} />
+            <Route path="entities" element={<TextEntities />} />
+            <Route path="animals" element={<TextEntities type="Animal" />} />
+            <Route path="plants" element={<TextEntities type="Plant" />} />
+          </Route>
           <Route
             path="/doc/api"
             element={<ApiDoc url="/api/openapi.yaml" title="EcoCor API" />}
