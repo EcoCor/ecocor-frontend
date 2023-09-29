@@ -15,7 +15,7 @@ function CorpusCardRow({
   dataStyle,
 }: {
   label: string;
-  data: number;
+  data: number | string;
   dataStyle?: TTailwindString;
 }) {
   const cellStyle = classnames(padding('pt-2', 'pb-1', 'px-3'));
@@ -34,7 +34,7 @@ function CorpusCardRow({
 }
 
 export default function CorpusCard({ corpus }: { corpus: CorpusListEntry }) {
-  const { name, title, metrics } = corpus;
+  const { name, title, metrics, updated } = corpus;
   return (
     <div className="rounded-xl inline-block shadow-lg">
       <div className="bg-white rounded-t-xl p-2 text-2xl font-bold">
@@ -47,14 +47,34 @@ export default function CorpusCard({ corpus }: { corpus: CorpusListEntry }) {
           <tbody>
             <CorpusCardRow
               label="Number of texts"
-              data={metrics.texts}
+              data={metrics.numOfTexts}
               dataStyle={classnames(fontSize('text-2xl'))}
             />
-            <CorpusCardRow label="Number of authors" data={metrics.authors} />
-            <CorpusCardRow label="Number of Words" data={metrics.words} />
-            <CorpusCardRow label="Number of Entities" data={metrics.entities} />
-            <CorpusCardRow label="Number of Animals" data={metrics.animals} />
-            <CorpusCardRow label="Number of Plants" data={metrics.plants} />
+            <CorpusCardRow
+              label="Number of authors"
+              data={metrics.numOfAuthors}
+            />
+            <CorpusCardRow
+              label="Number of paragraphs"
+              data={metrics.numOfParagraphs}
+            />
+            <CorpusCardRow label="Number of Words" data={metrics.numOfWords} />
+            <CorpusCardRow
+              label="Number of Entities"
+              data={metrics.numOfEntities}
+            />
+            <CorpusCardRow
+              label="Number of Animals"
+              data={metrics.numOfAnimals}
+            />
+            <CorpusCardRow
+              label="Number of Plants"
+              data={metrics.numOfPlants}
+            />
+            <CorpusCardRow
+              label="last update"
+              data={updated ? new Date(updated).toLocaleString() : 'n/a'}
+            />
           </tbody>
         </table>
       )}

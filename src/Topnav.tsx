@@ -1,4 +1,4 @@
-import { NavBar } from '@dracor.org/react';
+import { NavBar } from '@dracor/react';
 import packageInfo from '../package.json';
 import logo from './images/ecocor.svg';
 
