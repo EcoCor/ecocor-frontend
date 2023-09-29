@@ -43,6 +43,7 @@ export default function Text() {
     { label: 'Entities', href: 'entities', active: false },
     { label: 'Animals', href: 'animals', active: false },
     { label: 'Plants', href: 'plants', active: false },
+    { label: 'Full text', href: 'fulltext', active: false },
   ];
   tabs.forEach((t) => {
     const tabUrl = `/corpora/${corpusId}/${textId}/${t.href}`;
