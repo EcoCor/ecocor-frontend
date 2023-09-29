@@ -1215,11 +1215,12 @@
   resolved "https://registry.yarnpkg.com/@csstools/selector-specificity/-/selector-specificity-2.0.2.tgz#1bfafe4b7ed0f3e4105837e056e0a89b108ebe36"
   integrity sha512-IkpVW/ehM1hWKln4fCA3NzJU8KwD+kIOvPZA4cqxoJHtE21CCzjyp+Kxbu0i5I4tBNOlXPL9mjwnWlL0VEG4Fg==
 
-"@dracor/react@0.8.0":
-  version "0.8.0"
-  resolved "https://registry.npmjs.org/@dracor/react/-/react-0.8.0.tgz#1093799f3ecbd1a7f5405f214e144bfd9269b1c7"
-  integrity sha512-Ez+Xhm7wHBhHJ5SyjmSrV/dxk+pjuLaO+8JHvu7sA0oPaKHpQYq3ntlZCetIp9b5EY/45oLePvqv5hEFnnKs+w==
+"@dracor/react@0.9.0":
+  version "0.9.0"
+  resolved "https://registry.npmjs.org/@dracor/react/-/react-0.9.0.tgz#7ac836d93060f91cfef3814e588805dceb219130"
+  integrity sha512-zydkmyF1CNwbyOjzSAcmKscYYIrlxtHznA3dks/7kJfGIqc33pCc/DeZOSSxUKVVOIxy2mdzQkKlwcgnhLZDNA==
   dependencies:
+    CETEIcean "^1.8.0"
     tailwindcss-classnames "^3.1.0"
 
 "@eslint/eslintrc@^1.3.3":
