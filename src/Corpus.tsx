@@ -2,9 +2,9 @@ import { useEffect, useState, useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, useParams } from 'react-router-dom';
 import { ColumnDef } from '@tanstack/react-table';
+import { IdLink, Table } from '@dracor/react';
 import { getCorpus, getCorpusEntities, getCorpusTexts } from './api';
 import { CorpusData, Entity, Text } from './types';
-import Table from './Table';
 import WordCloud from './WordCloud';
 
 export default function Corpus() {
@@ -75,6 +75,25 @@ export default function Corpus() {
   const columns = useMemo<ColumnDef<Text>[]>(
     () => [
       {
+        accessorKey: 'authors',
+        header: 'Author',
+        accessorFn: (row) => {
+          const { authors = [] } = row;
+          return authors.map((a) => a.name).join(' ');
+        },
+        cell: (info) => (
+          <div>
+            {info.row.original.authors.map(({ name, ref }) => (
+              <div key={name}>
+                <span>{name}</span>
+                <br />
+                {ref && <IdLink>{ref}</IdLink>}
+              </div>
+            ))}
+          </div>
+        ),
+      },
+      {
         accessorKey: 'title',
         header: 'Title',
         cell: (info) => (
@@ -84,24 +103,32 @@ export default function Corpus() {
         ),
       },
       {
-        accessorKey: 'authors',
-        header: 'Author',
-        accessorFn: (row) => {
-          const { authors = [] } = row;
-          return authors.map((a) => a.name).join(' ');
-        },
-        cell: (info) => info.row.original.authors.map((a) => a.name).join(', '),
+        accessorKey: 'dates',
+        header: 'Year',
+        accessorFn: (row) => row.dates?.yearNormalized.toString() || '',
+        cell: (info) => <span>{info.row.original.dates?.yearNormalized}</span>,
       },
-      // {
-      //   accessorKey: 'source',
-      //   header: 'Source',
-      //   cell: (info) =>
-      //     info.row.original.sourceUrl ? (
-      //       <Link to={info.row.original.sourceUrl}>{`${info.getValue()}`}</Link>
-      //     ) : (
-      //       info.getValue()
-      //     ),
-      // },
+      {
+        accessorKey: 'chapters',
+        header: 'Chapters',
+        accessorFn: (row) => row.metrics?.numOfChapters || 0,
+        cell: (info) => info.row.original.metrics?.numOfChapters,
+        enableGlobalFilter: false,
+      },
+      {
+        accessorKey: 'entities',
+        header: 'Entities',
+        accessorFn: (row) => row.metrics?.numOfEntities || 0,
+        cell: (info) => (
+          <>
+            <span>{info.row.original.metrics?.numOfEntities}</span>{' '}
+            <span title="number of entity types">
+              ({info.row.original.metrics?.numOfEntityTypes})
+            </span>
+          </>
+        ),
+        enableGlobalFilter: false,
+      },
     ],
     []
   );
