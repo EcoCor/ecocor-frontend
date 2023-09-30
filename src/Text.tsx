@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Outlet, useParams, useLocation } from 'react-router-dom';
-import { IdCopy, Tabs } from '@dracor/react';
+import { AuthorInfo, IdCopy, Tabs } from '@dracor/react';
 import { getText } from './api';
 import { Text as TextData } from './types';
 
@@ -38,6 +38,14 @@ export default function Text() {
 
   const authors = text?.authors?.map((a) => a.name).join(', ');
   const authorTitle = text ? `${authors}: ${text.title}` : '';
+  const wikidataIds = text?.authors
+    ?.map((a) => {
+      const m = a.ref?.match(
+        /https:\/\/www\.wikidata\.org\/(?:wiki|entity)\/(Q[0-9]+)/
+      );
+      return m ? m[1] : null;
+    })
+    .filter((id) => !!id);
 
   const tabs = [
     { label: 'Entities', href: 'entities', active: false },
@@ -60,9 +68,18 @@ export default function Text() {
       {loading && <p>loading...</p>}
       {text && (
         <section>
-          <h2 className="text-sm mb-1">{authors}</h2>
-          <h1>{text.title}</h1>
-          <IdCopy>{text.id}</IdCopy>
+          <div className="flex justify-between mb-4 flex-col gap-3 md:flex-row">
+            <div>
+              <h2 className="text-sm mb-1">{authors}</h2>
+              <h1>{text.title}</h1>
+              <IdCopy>{text.id}</IdCopy>
+            </div>
+            <div>
+              {wikidataIds?.map((id) => (
+                <AuthorInfo key={id} wikidataId={id!} name="" />
+              ))}
+            </div>
+          </div>
           <Tabs data={tabs} />
           <Outlet />
         </section>
