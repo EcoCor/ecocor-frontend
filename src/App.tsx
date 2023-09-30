@@ -9,6 +9,7 @@ import DocPage from './DocPage';
 import ApiDoc from './ApiDoc';
 import TextHome from './TextHome';
 import TextEntities from './TextEntities';
+import FullText from './FullText';
 
 function matchDocPath(params: any): string | null {
   if (params.id) {
@@ -32,6 +33,7 @@ function App() {
             <Route path="entities" element={<TextEntities />} />
             <Route path="animals" element={<TextEntities type="Animal" />} />
             <Route path="plants" element={<TextEntities type="Plant" />} />
+            <Route path="fulltext" element={<FullText />} />
           </Route>
           <Route
             path="/doc/api"
