@@ -5,9 +5,9 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-const { REACT_APP_MOCK_API } = process.env;
+const { VITE_MOCK_API } = import.meta.env;
 
-if (REACT_APP_MOCK_API === 'yes') {
+if (VITE_MOCK_API === 'yes') {
   const { worker } = require('./mocks/browser');
   worker.start();
 }

@@ -49,7 +49,6 @@ export default function DocPage({ url, match }: Props) {
 
     let source = url || (match ? match(params) : null);
     if (source) {
-      source = `${process.env.PUBLIC_URL}${source}`;
       fetchMarkdown(source);
     }
   }, [url, match, params]);

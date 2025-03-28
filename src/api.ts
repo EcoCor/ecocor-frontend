@@ -6,7 +6,7 @@ import axios, {
 } from 'axios';
 import { CorpusData, Text, Entity } from './types';
 
-const apiUrl = process.env.REACT_APP_ECOCOR_API;
+const apiUrl = import.meta.env.VITE_ECOCOR_API;
 
 const defaultOpts: AxiosRequestConfig = {
   withCredentials: true,

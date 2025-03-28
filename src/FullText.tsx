@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { TEIText } from '@dracor/react';
 
-const apiUrl = process.env.REACT_APP_ECOCOR_API;
+const apiUrl = import.meta.env.VITE_ECOCOR_API;
 
 export default function FullText() {
   const { corpusId, textId } = useParams<{

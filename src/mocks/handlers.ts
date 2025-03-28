@@ -4,8 +4,8 @@ import { CorpusData, Text } from '../types';
 const corpora: CorpusData[] = require('./data/corpora.json');
 const textsMap: { [index: string]: Text[] } = require('./data/texts.json');
 
-const apiBase = process.env.REACT_APP_ECOCOR_API;
-const delay = parseInt(process.env.REACT_APP_MOCK_API_DELAY || '0');
+const apiBase = import.meta.env.VITE_ECOCOR_API;
+const delay = parseInt(import.meta.env.VITE_MOCK_API_DELAY || '0');
 
 export const handlers = [
   rest.get(`${apiBase}/corpora`, (req, res, ctx) => {
