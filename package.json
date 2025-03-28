@@ -66,34 +66,6 @@
     "lint": "eslint src",
     "lint-staged": "lint-staged"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest",
-      "plugin:prettier/recommended",
-      "prettier"
-    ],
-    "rules": {
-      "curly": "error",
-      "import/newline-after-import": "error",
-      "import/order": "error",
-      "no-console": "warn",
-      "spaced-comment": [
-        "error",
-        "always"
-      ]
-    },
-    "overrides": [
-      {
-        "files": [
-          "src/react-app-env.d.ts"
-        ],
-        "rules": {
-          "spaced-comment": "off"
-        }
-      }
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",
