@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Topnav from './Topnav';
 import Home from './Home';
@@ -6,10 +7,11 @@ import Corpus from './Corpus';
 import CorpusEntities from './CorpusEntities';
 import Text from './Text';
 import DocPage from './DocPage';
-import ApiDoc from './ApiDoc';
 import TextHome from './TextHome';
 import TextEntities from './TextEntities';
 import FullText from './FullText';
+
+const ApiDoc = lazy(() => import('./ApiDoc'));
 
 function matchDocPath(params: any): string | null {
   if (params.id) {
@@ -37,7 +39,11 @@ function App() {
           </Route>
           <Route
             path="/doc/api"
-            element={<ApiDoc url="/api/openapi.yaml" title="EcoCor API" />}
+            element={
+              <Suspense>
+                <ApiDoc url="/api/openapi.yaml" title="EcoCor API" />
+              </Suspense>
+            }
           />
           <Route path="/doc/:id" element={<DocPage match={matchDocPath} />} />
           <Route path="/merch" element={<DocPage url="/doc/merch.md" />} />
