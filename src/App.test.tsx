@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { HelmetProvider } from 'react-helmet-async';
 import App from './App';
 
-test.skip('renders App', () => {
+test('renders App', () => {
   render(
     <HelmetProvider>
       <App />
