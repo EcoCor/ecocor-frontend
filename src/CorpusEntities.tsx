@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
 import { getCorpusEntities, getCorpus } from './api';
 import { CorpusData, Entity } from './types';
-import WordCloud from './WordCloud';
+// import WordCloud from './WordCloud';
 
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/animations/scale.css';
@@ -74,7 +74,7 @@ export default function CorpusEntities() {
         <section>
           <h1>{corpus.title}</h1>
           {loadingEntities && <div className="text-center">Loading...</div>}
-          {words.length > 0 && <WordCloud words={words} />}
+          {/* {words.length > 0 && <WordCloud words={words} />} */}
         </section>
       )}
     </div>

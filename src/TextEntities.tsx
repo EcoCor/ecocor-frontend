@@ -4,7 +4,7 @@ import { ColumnDef } from '@tanstack/react-table';
 import { IdLink, Table } from '@dracor/react';
 import { getTextEntities } from './api';
 import { Entity } from './types';
-import WordCloud from './WordCloud';
+// import WordCloud from './WordCloud';
 
 export interface Props {
   type?: string;
@@ -74,7 +74,7 @@ export default function TextEntities({ type }: Props) {
   return (
     <div className="mt-2">
       {loading && <p>loading...</p>}
-      {words.length > 0 && <WordCloud words={words} />}
+      {/* {words.length > 0 && <WordCloud words={words} />} */}
       {entities.length > 0 && (
         <Table
           data={entities}

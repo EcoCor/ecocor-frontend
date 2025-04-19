@@ -5,7 +5,7 @@ import { ColumnDef } from '@tanstack/react-table';
 import { IdLink, Table } from '@dracor/react';
 import { getCorpus, getCorpusEntities, getCorpusTexts } from './api';
 import { CorpusData, Entity, Text } from './types';
-import WordCloud from './WordCloud';
+// import WordCloud from './WordCloud';
 
 export default function Corpus() {
   const { id } = useParams<{ id: string }>();
@@ -145,7 +145,7 @@ export default function Corpus() {
           {loadingEntities && (
             <div className="text-center">Loading entities...</div>
           )}
-          {words.length > 0 && <WordCloud words={words} />}
+          {/* {words.length > 0 && <WordCloud words={words} />} */}
           {texts.length > 0 && <Table data={texts} columns={columns} />}
         </section>
       )}
