@@ -20,6 +20,6 @@ module.exports = {
   },
   plugins: [
     require('@dracor/react/tailwind'),
-    require('@dracor/react/ceteicean'),
+    // require('@dracor/react/ceteicean'),
   ],
 };
