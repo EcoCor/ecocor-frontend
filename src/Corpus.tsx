@@ -1,6 +1,6 @@
 import { useEffect, useState, useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams } from '@tanstack/react-router';
 import { ColumnDef } from '@tanstack/react-table';
 import { IdLink, Table } from '@dracor/react';
 import { getCorpus, getCorpusEntities, getCorpusTexts } from './api';

@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import { Navigate } from 'react-router-dom';
+import { Navigate } from '@tanstack/react-router';
 
 export default function Home() {
   return (

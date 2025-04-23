@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from '@tanstack/react-router';
 import Topnav from './Topnav';
 import Home from './Home';
 import Corpora from './Corpora';

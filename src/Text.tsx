@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Outlet, useParams, useLocation } from 'react-router-dom';
+import { Outlet, useParams, useLocation } from '@tanstack/react-router';
 import { AuthorInfo, IdCopy, Tabs } from '@dracor/react';
 import { getText } from './api';
 import { Text as TextData } from './types';

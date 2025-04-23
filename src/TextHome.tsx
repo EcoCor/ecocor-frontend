@@ -1,4 +1,4 @@
-import { Navigate } from 'react-router-dom';
+import { Navigate } from '@tanstack/react-router';
 
 export default function TextHome() {
   return <Navigate to="entities" replace />;

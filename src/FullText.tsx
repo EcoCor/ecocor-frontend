@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams } from '@tanstack/react-router';
 import { TEIText } from '@dracor/react';
 
 const apiUrl = import.meta.env.VITE_ECOCOR_API;

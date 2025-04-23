@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams } from '@tanstack/react-router';
 import ReactMarkdown from 'react-markdown';
 import { Helmet } from 'react-helmet-async';
 import axios, { AxiosHeaders } from 'axios';
