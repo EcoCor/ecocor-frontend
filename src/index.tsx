@@ -1,23 +1,23 @@
-import React from 'react';
+import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
-import { HelmetProvider } from 'react-helmet-async';
-import './index.css';
 import App from './App';
+
+import './index.css';
 
 const { VITE_MOCK_API } = import.meta.env;
 
 if (VITE_MOCK_API === 'yes') {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   const { worker } = require('./mocks/browser');
   worker.start();
 }
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-root.render(
-  <React.StrictMode>
-    <HelmetProvider>
+const rootElement = document.getElementById('root')!;
+if (!rootElement.innerHTML) {
+  const root = ReactDOM.createRoot(rootElement);
+  root.render(
+    <StrictMode>
       <App />
-    </HelmetProvider>
-  </React.StrictMode>
-);
+    </StrictMode>
+  );
+}

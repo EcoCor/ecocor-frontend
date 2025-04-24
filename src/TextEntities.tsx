@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useState } from 'react';
-import { useParams } from '@tanstack/react-router';
 import { ColumnDef } from '@tanstack/react-table';
 import { IdLink, Table } from '@dracor/react';
 import { getTextEntities } from './api';
@@ -7,14 +6,12 @@ import { Entity } from './types';
 // import WordCloud from './WordCloud';
 
 export interface Props {
+  corpusId: string;
+  textId: string;
   type?: string;
 }
 
-export default function TextEntities({ type }: Props) {
-  const { corpusId, textId } = useParams<{
-    corpusId: string;
-    textId: string;
-  }>();
+export default function TextEntities({ corpusId, textId, type }: Props) {
   const [entities, setEntities] = useState<Entity[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -29,6 +26,7 @@ export default function TextEntities({ type }: Props) {
           setEntities(resp.data);
         }
       } catch (error) {
+        console.log(error);
         alert('Cannot load text');
       }
       if (isMounted) {
@@ -70,6 +68,7 @@ export default function TextEntities({ type }: Props) {
     text: name,
     value: overallFrequency,
   }));
+  console.log({ words });
 
   return (
     <div className="mt-2">

@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Outlet, useParams, useLocation } from '@tanstack/react-router';
+import { Outlet, useLocation } from '@tanstack/react-router';
 import { AuthorInfo, IdCopy, Tabs } from '@dracor/react';
 import { getText } from './api';
 import { Text as TextData } from './types';
 
-export default function Text() {
-  const location = useLocation();
-  const { corpusId, textId } = useParams<{
-    corpusId: string;
-    textId: string;
-  }>();
+export interface Props {
+  corpusId: string;
+  textId: string;
+}
+
+export default function Text({ corpusId, textId }: Props) {
+  const { pathname } = useLocation();
   const [text, setText] = useState<TextData>();
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -19,11 +20,12 @@ export default function Text() {
     (async function () {
       setLoading(true);
       try {
-        const resp = await getText(corpusId!, textId!);
+        const resp = await getText(corpusId, textId);
         if (isMounted) {
           setText(resp.data);
         }
       } catch (error) {
+        console.log(error);
         alert('Cannot load text');
       }
       if (isMounted) {
@@ -47,15 +49,15 @@ export default function Text() {
     })
     .filter((id) => !!id);
 
+  const p = `/corpora/${corpusId}/${textId}`;
   const tabs = [
-    { label: 'Entities', href: 'entities', active: false },
-    { label: 'Animals', href: 'animals', active: false },
-    { label: 'Plants', href: 'plants', active: false },
-    { label: 'Full text', href: 'fulltext', active: false },
+    { label: 'Entities', href: `${p}/entities`, active: false },
+    { label: 'Animals', href: `${p}/animals`, active: false },
+    { label: 'Plants', href: `${p}/plants`, active: false },
+    { label: 'Full text', href: `${p}/fulltext`, active: false },
   ];
   tabs.forEach((t) => {
-    const tabUrl = `/corpora/${corpusId}/${textId}/${t.href}`;
-    if (tabUrl === location.pathname) {
+    if (t.href === pathname) {
       t.active = true;
     }
   });

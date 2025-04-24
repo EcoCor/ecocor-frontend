@@ -18,6 +18,7 @@ export default function Corpora() {
           setCorpora(resp.data);
         }
       } catch (error) {
+        console.log(error);
         alert('Cannot load corpora');
       }
       if (isMounted) {

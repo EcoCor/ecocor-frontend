@@ -1,14 +1,17 @@
 import { useEffect, useState, useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Link, useParams } from '@tanstack/react-router';
+import { Link } from '@tanstack/react-router';
 import { ColumnDef } from '@tanstack/react-table';
 import { IdLink, Table } from '@dracor/react';
 import { getCorpus, getCorpusEntities, getCorpusTexts } from './api';
 import { CorpusData, Entity, Text } from './types';
 // import WordCloud from './WordCloud';
 
-export default function Corpus() {
-  const { id } = useParams<{ id: string }>();
+export interface Props {
+  id: string;
+}
+
+export default function Corpus({ id }: Props) {
   const [corpus, setCorpus] = useState<CorpusData>();
   const [texts, setTexts] = useState<Text[]>([]);
   const [entities, setEntities] = useState<Entity[]>([]);
@@ -26,6 +29,7 @@ export default function Corpus() {
           setCorpus(resp.data);
         }
       } catch (error) {
+        console.log(error);
         alert('Cannot load corpus');
       }
       try {
@@ -34,6 +38,7 @@ export default function Corpus() {
           setTexts(resp.data);
         }
       } catch (error) {
+        console.log(error);
         alert('Cannot load corpus');
       }
       if (isMounted) {
@@ -56,6 +61,7 @@ export default function Corpus() {
           setEntities(resp.data);
         }
       } catch (error) {
+        console.log(error);
         alert('Cannot load entities');
       }
       if (isMounted) {
@@ -71,6 +77,7 @@ export default function Corpus() {
     text: name,
     value: overallFrequency,
   }));
+  console.log({ words });
 
   const columns = useMemo<ColumnDef<Text>[]>(
     () => [

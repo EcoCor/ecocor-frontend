@@ -1,16 +1,14 @@
 import { useEffect, useState } from 'react';
-import { useParams } from '@tanstack/react-router';
 import ReactMarkdown from 'react-markdown';
 import { Helmet } from 'react-helmet-async';
 import axios, { AxiosHeaders } from 'axios';
 
 export interface Props {
   url?: string;
-  match?: (params: any) => string | null;
+  match?: () => string | null;
 }
 
 export default function DocPage({ url, match }: Props) {
-  const params = useParams();
   const [markdown, setMarkdown] = useState('');
   const [title, setTitle] = useState('Foo Title');
 
@@ -47,11 +45,11 @@ export default function DocPage({ url, match }: Props) {
       }
     }
 
-    let source = url || (match ? match(params) : null);
+    const source = url || (match ? match() : null);
     if (source) {
       fetchMarkdown(source);
     }
-  }, [url, match, params]);
+  }, [url, match]);
 
   return (
     <div>
