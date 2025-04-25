@@ -17,6 +17,7 @@ import { Route as DocApiImport } from './routes/doc/api';
 import { Route as DocIdImport } from './routes/doc/$id';
 import { Route as CorporaCorpusIdIndexImport } from './routes/corpora/$corpusId/index';
 import { Route as CorporaCorpusIdTextIdRouteImport } from './routes/corpora/$corpusId/$textId/route';
+import { Route as CorporaCorpusIdTextIdIndexImport } from './routes/corpora/$corpusId/$textId/index';
 import { Route as CorporaCorpusIdTextIdPlantsImport } from './routes/corpora/$corpusId/$textId/plants';
 import { Route as CorporaCorpusIdTextIdFulltextImport } from './routes/corpora/$corpusId/$textId/fulltext';
 import { Route as CorporaCorpusIdTextIdEntitiesImport } from './routes/corpora/$corpusId/$textId/entities';
@@ -59,6 +60,14 @@ const CorporaCorpusIdTextIdRouteRoute = CorporaCorpusIdTextIdRouteImport.update(
     id: '/corpora/$corpusId/$textId',
     path: '/corpora/$corpusId/$textId',
     getParentRoute: () => rootRoute,
+  } as any
+);
+
+const CorporaCorpusIdTextIdIndexRoute = CorporaCorpusIdTextIdIndexImport.update(
+  {
+    id: '/',
+    path: '/',
+    getParentRoute: () => CorporaCorpusIdTextIdRouteRoute,
   } as any
 );
 
@@ -164,6 +173,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CorporaCorpusIdTextIdPlantsImport;
       parentRoute: typeof CorporaCorpusIdTextIdRouteImport;
     };
+    '/corpora/$corpusId/$textId/': {
+      id: '/corpora/$corpusId/$textId/';
+      path: '/';
+      fullPath: '/corpora/$corpusId/$textId/';
+      preLoaderRoute: typeof CorporaCorpusIdTextIdIndexImport;
+      parentRoute: typeof CorporaCorpusIdTextIdRouteImport;
+    };
   }
 }
 
@@ -174,6 +190,7 @@ interface CorporaCorpusIdTextIdRouteRouteChildren {
   CorporaCorpusIdTextIdEntitiesRoute: typeof CorporaCorpusIdTextIdEntitiesRoute;
   CorporaCorpusIdTextIdFulltextRoute: typeof CorporaCorpusIdTextIdFulltextRoute;
   CorporaCorpusIdTextIdPlantsRoute: typeof CorporaCorpusIdTextIdPlantsRoute;
+  CorporaCorpusIdTextIdIndexRoute: typeof CorporaCorpusIdTextIdIndexRoute;
 }
 
 const CorporaCorpusIdTextIdRouteRouteChildren: CorporaCorpusIdTextIdRouteRouteChildren =
@@ -182,6 +199,7 @@ const CorporaCorpusIdTextIdRouteRouteChildren: CorporaCorpusIdTextIdRouteRouteCh
     CorporaCorpusIdTextIdEntitiesRoute: CorporaCorpusIdTextIdEntitiesRoute,
     CorporaCorpusIdTextIdFulltextRoute: CorporaCorpusIdTextIdFulltextRoute,
     CorporaCorpusIdTextIdPlantsRoute: CorporaCorpusIdTextIdPlantsRoute,
+    CorporaCorpusIdTextIdIndexRoute: CorporaCorpusIdTextIdIndexRoute,
   };
 
 const CorporaCorpusIdTextIdRouteRouteWithChildren =
@@ -200,6 +218,7 @@ export interface FileRoutesByFullPath {
   '/corpora/$corpusId/$textId/entities': typeof CorporaCorpusIdTextIdEntitiesRoute;
   '/corpora/$corpusId/$textId/fulltext': typeof CorporaCorpusIdTextIdFulltextRoute;
   '/corpora/$corpusId/$textId/plants': typeof CorporaCorpusIdTextIdPlantsRoute;
+  '/corpora/$corpusId/$textId/': typeof CorporaCorpusIdTextIdIndexRoute;
 }
 
 export interface FileRoutesByTo {
@@ -207,12 +226,12 @@ export interface FileRoutesByTo {
   '/doc/$id': typeof DocIdRoute;
   '/doc/api': typeof DocApiRoute;
   '/corpora': typeof CorporaIndexRoute;
-  '/corpora/$corpusId/$textId': typeof CorporaCorpusIdTextIdRouteRouteWithChildren;
   '/corpora/$corpusId': typeof CorporaCorpusIdIndexRoute;
   '/corpora/$corpusId/$textId/animals': typeof CorporaCorpusIdTextIdAnimalsRoute;
   '/corpora/$corpusId/$textId/entities': typeof CorporaCorpusIdTextIdEntitiesRoute;
   '/corpora/$corpusId/$textId/fulltext': typeof CorporaCorpusIdTextIdFulltextRoute;
   '/corpora/$corpusId/$textId/plants': typeof CorporaCorpusIdTextIdPlantsRoute;
+  '/corpora/$corpusId/$textId': typeof CorporaCorpusIdTextIdIndexRoute;
 }
 
 export interface FileRoutesById {
@@ -227,6 +246,7 @@ export interface FileRoutesById {
   '/corpora/$corpusId/$textId/entities': typeof CorporaCorpusIdTextIdEntitiesRoute;
   '/corpora/$corpusId/$textId/fulltext': typeof CorporaCorpusIdTextIdFulltextRoute;
   '/corpora/$corpusId/$textId/plants': typeof CorporaCorpusIdTextIdPlantsRoute;
+  '/corpora/$corpusId/$textId/': typeof CorporaCorpusIdTextIdIndexRoute;
 }
 
 export interface FileRouteTypes {
@@ -241,19 +261,20 @@ export interface FileRouteTypes {
     | '/corpora/$corpusId/$textId/animals'
     | '/corpora/$corpusId/$textId/entities'
     | '/corpora/$corpusId/$textId/fulltext'
-    | '/corpora/$corpusId/$textId/plants';
+    | '/corpora/$corpusId/$textId/plants'
+    | '/corpora/$corpusId/$textId/';
   fileRoutesByTo: FileRoutesByTo;
   to:
     | '/'
     | '/doc/$id'
     | '/doc/api'
     | '/corpora'
-    | '/corpora/$corpusId/$textId'
     | '/corpora/$corpusId'
     | '/corpora/$corpusId/$textId/animals'
     | '/corpora/$corpusId/$textId/entities'
     | '/corpora/$corpusId/$textId/fulltext'
-    | '/corpora/$corpusId/$textId/plants';
+    | '/corpora/$corpusId/$textId/plants'
+    | '/corpora/$corpusId/$textId';
   id:
     | '__root__'
     | '/'
@@ -265,7 +286,8 @@ export interface FileRouteTypes {
     | '/corpora/$corpusId/$textId/animals'
     | '/corpora/$corpusId/$textId/entities'
     | '/corpora/$corpusId/$textId/fulltext'
-    | '/corpora/$corpusId/$textId/plants';
+    | '/corpora/$corpusId/$textId/plants'
+    | '/corpora/$corpusId/$textId/';
   fileRoutesById: FileRoutesById;
 }
 
@@ -323,7 +345,8 @@ export const routeTree = rootRoute
         "/corpora/$corpusId/$textId/animals",
         "/corpora/$corpusId/$textId/entities",
         "/corpora/$corpusId/$textId/fulltext",
-        "/corpora/$corpusId/$textId/plants"
+        "/corpora/$corpusId/$textId/plants",
+        "/corpora/$corpusId/$textId/"
       ]
     },
     "/corpora/$corpusId/": {
@@ -343,6 +366,10 @@ export const routeTree = rootRoute
     },
     "/corpora/$corpusId/$textId/plants": {
       "filePath": "corpora/$corpusId/$textId/plants.tsx",
+      "parent": "/corpora/$corpusId/$textId"
+    },
+    "/corpora/$corpusId/$textId/": {
+      "filePath": "corpora/$corpusId/$textId/index.tsx",
       "parent": "/corpora/$corpusId/$textId"
     }
   }
