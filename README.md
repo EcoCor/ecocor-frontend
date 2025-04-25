@@ -15,7 +15,7 @@ To start working on _ecocor-frontend_ or to just check it out run the following
 commands:
 
 ```sh
-git clone git@github.com:dh-network/ecocor-frontend.git
+git clone git@github.com:EcoCor/ecocor-frontend.git
 cd ecocor-frontend
 pnpm install
 pnpm start
