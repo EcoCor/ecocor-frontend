@@ -4,16 +4,13 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  '@dracor/react': link:../../dracor/dracor-react
-
 importers:
 
   .:
     dependencies:
       '@dracor/react':
-        specifier: link:../../dracor/dracor-react
-        version: link:../../dracor/dracor-react
+        specifier: 1.0.0-alpha.2
+        version: 1.0.0-alpha.2(@fortawesome/fontawesome-svg-core@6.7.2)(@fortawesome/free-brands-svg-icons@6.7.2)(@fortawesome/free-solid-svg-icons@6.7.2)(@fortawesome/react-fontawesome@0.2.2(@fortawesome/fontawesome-svg-core@6.7.2)(react@19.1.0))(@headlessui/react@2.2.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@tanstack/react-router@1.116.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@tanstack/react-table@8.21.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@types/react-copy-to-clipboard@5.0.7)(CETEIcean@1.9.4)(react-copy-to-clipboard@5.1.0(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react-helmet-async@2.0.5(react@19.1.0))(react@19.1.0)(swagger-ui-react@5.21.0(@types/react@19.1.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
       '@fortawesome/fontawesome-svg-core':
         specifier: ^6.2.1
         version: 6.7.2
@@ -312,6 +309,24 @@ packages:
   '@csstools/css-tokenizer@3.0.3':
     resolution: {integrity: sha512-UJnjoFsmxfKUdNYdWgOB0mWUypuLvAfQPH1+pyvRJs6euowbFkFC6P13w1l8mJyi3vxYMxc9kld5jZEGRQs6bw==}
     engines: {node: '>=18'}
+
+  '@dracor/react@1.0.0-alpha.2':
+    resolution: {integrity: sha512-tOH+aLqsGXOQJkbdfZo2r8BSsM/IECJ/oy1R5llPxbuCGe2pFhb9OWfMajLAyQr8Gf0Me1CnbqCluh894K+XXQ==}
+    peerDependencies:
+      '@fortawesome/fontawesome-svg-core': ^6.7.2
+      '@fortawesome/free-brands-svg-icons': ^6.7.2
+      '@fortawesome/free-solid-svg-icons': ^6.7.2
+      '@fortawesome/react-fontawesome': ^0.2.2
+      '@headlessui/react': ^2.2.0
+      '@tanstack/react-router': ^1.116.0
+      '@tanstack/react-table': ^8.21.2
+      '@types/react-copy-to-clipboard': ^5.0.7
+      CETEIcean: ^1.9.4
+      react: ^19.0.0
+      react-copy-to-clipboard: ^5.1.0
+      react-dom: ^19.0.0
+      react-helmet-async: ^2.0.5
+      swagger-ui-react: ^5.20.0
 
   '@esbuild/aix-ppc64@0.25.2':
     resolution: {integrity: sha512-wCIboOL2yXZym2cgm6mlA742s9QeJ8DjGVaL39dLN4rRwrOgOyYSnOaFPhKZGLb2ngj4EyfAFjsNJwPXZvseag==}
@@ -1191,6 +1206,9 @@ packages:
 
   '@types/ramda@0.30.2':
     resolution: {integrity: sha512-PyzHvjCalm2BRYjAU6nIB3TprYwMNOUY/7P/N8bSzp9W/yM2YrtGtAnnVtaCNSeOZ8DzKyFDvaqQs7LnWwwmBA==}
+
+  '@types/react-copy-to-clipboard@5.0.7':
+    resolution: {integrity: sha512-Gft19D+as4M+9Whq1oglhmK49vqPhcLzk8WfvfLvaYMIPYanyfLy0+CwFucMJfdKoSFyySPmkkWn8/E6voQXjQ==}
 
   '@types/react-dom@19.1.2':
     resolution: {integrity: sha512-XGJkWF41Qq305SKWEILa1O8vzhb3aOo3ogBlSmiqNko/WmRb6QIaweuZCXjKygVDXpzXb5wyxKTSOsmkuqj+Qw==}
@@ -3731,6 +3749,23 @@ snapshots:
 
   '@csstools/css-tokenizer@3.0.3': {}
 
+  '@dracor/react@1.0.0-alpha.2(@fortawesome/fontawesome-svg-core@6.7.2)(@fortawesome/free-brands-svg-icons@6.7.2)(@fortawesome/free-solid-svg-icons@6.7.2)(@fortawesome/react-fontawesome@0.2.2(@fortawesome/fontawesome-svg-core@6.7.2)(react@19.1.0))(@headlessui/react@2.2.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@tanstack/react-router@1.116.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@tanstack/react-table@8.21.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@types/react-copy-to-clipboard@5.0.7)(CETEIcean@1.9.4)(react-copy-to-clipboard@5.1.0(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react-helmet-async@2.0.5(react@19.1.0))(react@19.1.0)(swagger-ui-react@5.21.0(@types/react@19.1.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))':
+    dependencies:
+      '@fortawesome/fontawesome-svg-core': 6.7.2
+      '@fortawesome/free-brands-svg-icons': 6.7.2
+      '@fortawesome/free-solid-svg-icons': 6.7.2
+      '@fortawesome/react-fontawesome': 0.2.2(@fortawesome/fontawesome-svg-core@6.7.2)(react@19.1.0)
+      '@headlessui/react': 2.2.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@tanstack/react-router': 1.116.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@tanstack/react-table': 8.21.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@types/react-copy-to-clipboard': 5.0.7
+      CETEIcean: 1.9.4
+      react: 19.1.0
+      react-copy-to-clipboard: 5.1.0(react@19.1.0)
+      react-dom: 19.1.0(react@19.1.0)
+      react-helmet-async: 2.0.5(react@19.1.0)
+      swagger-ui-react: 5.21.0(@types/react@19.1.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+
   '@esbuild/aix-ppc64@0.25.2':
     optional: true
 
@@ -4782,6 +4817,10 @@ snapshots:
   '@types/ramda@0.30.2':
     dependencies:
       types-ramda: 0.30.1
+
+  '@types/react-copy-to-clipboard@5.0.7':
+    dependencies:
+      '@types/react': 19.1.2
 
   '@types/react-dom@19.1.2(@types/react@19.1.2)':
     dependencies:
