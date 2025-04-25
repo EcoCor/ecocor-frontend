@@ -8,7 +8,7 @@
     "url": "https://github.com/EcoCor/ecocor-frontend.git"
   },
   "dependencies": {
-    "@dracor/react": "1.0.0-alpha.2",
+    "@dracor/react": "1.0.0-beta.1",
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
     "@fortawesome/free-brands-svg-icons": "^6.2.1",
     "@fortawesome/free-solid-svg-icons": "^6.2.1",

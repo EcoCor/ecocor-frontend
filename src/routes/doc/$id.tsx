@@ -1,5 +1,5 @@
 import { createFileRoute, useParams } from '@tanstack/react-router';
-import DocPage from '../../DocPage';
+import { DocPage } from '@dracor/react';
 
 export const Route = createFileRoute('/doc/$id')({
   component: RouteComponent,
