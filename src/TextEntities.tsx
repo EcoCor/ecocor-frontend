@@ -3,7 +3,11 @@ import { ColumnDef } from '@tanstack/react-table';
 import { IdLink, Table } from '@dracor/react';
 import { getTextEntities } from './api';
 import { Entity } from './types';
-import WordCloud from './WordCloud';
+import WordCloud, { type CloudWord, type WordKind } from './WordCloud';
+
+type TypedEntity = Entity & {
+  kind: WordKind;
+};
 
 export interface Props {
   corpusId: string;
@@ -12,7 +16,7 @@ export interface Props {
 }
 
 export default function TextEntities({ corpusId, textId, type }: Props) {
-  const [entities, setEntities] = useState<Entity[]>([]);
+  const [entities, setEntities] = useState<TypedEntity[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
@@ -21,9 +25,34 @@ export default function TextEntities({ corpusId, textId, type }: Props) {
       setLoading(true);
       setEntities([]);
       try {
-        const resp = await getTextEntities(corpusId!, textId!, type);
-        if (isMounted) {
-          setEntities(resp.data);
+        if (type === 'Animal' || type === 'Plant') {
+          const resp = await getTextEntities(corpusId!, textId!, type);
+          if (isMounted) {
+            setEntities(
+              resp.data.map((entity) => ({
+                ...entity,
+                kind: type,
+              }))
+            );
+          }
+        } else {
+          const [animalsResp, plantsResp] = await Promise.all([
+            getTextEntities(corpusId!, textId!, 'Animal'),
+            getTextEntities(corpusId!, textId!, 'Plant'),
+          ]);
+
+          if (isMounted) {
+            setEntities([
+              ...animalsResp.data.map((entity) => ({
+                ...entity,
+                kind: 'Animal' as const,
+              })),
+              ...plantsResp.data.map((entity) => ({
+                ...entity,
+                kind: 'Plant' as const,
+              })),
+            ]);
+          }
         }
       } catch (error) {
         console.log(error);
@@ -37,9 +66,9 @@ export default function TextEntities({ corpusId, textId, type }: Props) {
       isMounted = false;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [type]);
+  }, [corpusId, textId, type]);
 
-  const columns = useMemo<ColumnDef<Entity>[]>(
+  const columns = useMemo<ColumnDef<TypedEntity>[]>(
     () => [
       {
         accessorKey: 'name',
@@ -64,10 +93,13 @@ export default function TextEntities({ corpusId, textId, type }: Props) {
     []
   );
 
-  const words = entities.map(({ name, metrics: { overallFrequency } }) => ({
-    text: name,
-    value: overallFrequency,
-  }));
+  const words: CloudWord[] = entities.map(
+    ({ name, metrics: { overallFrequency }, kind }) => ({
+      text: name,
+      value: overallFrequency,
+      kind,
+    })
+  );
 
   return (
     <div className="mt-2 space-y-6">

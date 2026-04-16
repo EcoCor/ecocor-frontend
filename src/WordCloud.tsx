@@ -4,8 +4,14 @@ import {
   type Word,
 } from '@isoterik/react-word-cloud';
 
+export type WordKind = 'Animal' | 'Plant';
+
+export type CloudWord = Word & {
+  kind?: WordKind;
+};
+
 export interface Props {
-  words: Word[];
+  words: CloudWord[];
   height?: number;
   className?: string;
   enableTooltip?: boolean;
@@ -22,7 +28,11 @@ export default function WordCloud({
   const [width, setWidth] = useState(0);
 
   const displayWords = useMemo(
-    () => words.map((word) => ({ ...word, text: word.text.toUpperCase() })),
+    () =>
+      words.map((word) => ({
+        ...word,
+        text: word.text.toUpperCase(),
+      })),
     [words]
   );
 
@@ -88,7 +98,19 @@ export default function WordCloud({
             fontWeight="500"
             fontSize={(word) => Math.sqrt(word.value) * 4}
             rotate={(_word, index) => (index % 2 === 0 ? 0 : 90)}
-            fill="var(--color-secondary-200)"
+            fill={(word) => {
+              const typedWord = word as CloudWord;
+
+              if (typedWord.kind === 'Plant') {
+                return 'var(--color-secondary-200)';
+              }
+
+              if (typedWord.kind === 'Animal') {
+                return 'rgb(31, 36, 72)';
+              }
+
+              return 'rgb(31, 36, 72)';
+            }}
             padding={2}
             spiral="archimedean"
             transition="all .35s ease"
