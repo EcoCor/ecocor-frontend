@@ -9,7 +9,7 @@ import { CorpusData, Text, Entity } from './types';
 const apiUrl = import.meta.env.VITE_ECOCOR_API;
 
 const defaultOpts: AxiosRequestConfig = {
-  withCredentials: true,
+  withCredentials: false,
 };
 
 async function fetchData<T>(
