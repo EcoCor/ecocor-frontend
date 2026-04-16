@@ -75,4 +75,9 @@
   body {
     font-family: Rubik;
   }
+
+  /* Dracor brand colors as CSS variables */
+  :root {
+    --dracor-blue: rgb(31, 36, 72);
+  }
 }
