@@ -4,15 +4,6 @@ import {
   type Word,
 } from '@isoterik/react-word-cloud';
 
-const getDracorBlue = () => {
-  if (typeof window === 'undefined') return 'rgb(31, 36, 72)';
-  return (
-    getComputedStyle(document.documentElement)
-      .getPropertyValue('--dracor-blue')
-      .trim() || 'rgb(31, 36, 72)'
-  );
-};
-
 export interface Props {
   words: Word[];
   height?: number;
@@ -95,9 +86,9 @@ export default function WordCloud({
             font="Rubik"
             fontStyle="normal"
             fontWeight="500"
-            fontSize={(word) => Math.sqrt(word.value) * 2.5}
+            fontSize={(word) => Math.sqrt(word.value) * 4}
             rotate={(_word, index) => (index % 2 === 0 ? 0 : 90)}
-            fill={getDracorBlue()}
+            fill="var(--color-secondary-200)"
             padding={2}
             spiral="archimedean"
             transition="all .35s ease"
