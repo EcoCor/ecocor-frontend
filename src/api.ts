@@ -48,9 +48,13 @@ export async function getCorpusTexts(
 }
 
 export async function getCorpusEntities(
-  corpusName: string
+  corpusName: string,
+  type?: string
 ): Promise<AxiosResponse<Entity[]>> {
-  const url = `${apiUrl}/corpora/${corpusName}/entities`;
+  let url = `${apiUrl}/corpora/${corpusName}/entities`;
+  if (type) {
+    url += `?type=${encodeURIComponent(type)}`;
+  }
   return await fetchData<Entity[]>(url);
 }
 
