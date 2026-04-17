@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Outlet, useLocation } from '@tanstack/react-router';
+import { Outlet } from '@tanstack/react-router';
 import { AuthorInfo, IdCopy, Tabs } from '@dracor/react';
 import { getText } from './api';
 import { Text as TextData } from './types';
@@ -10,7 +10,6 @@ export interface Props {
 }
 
 export default function Text({ corpusId, textId }: Props) {
-  const { pathname } = useLocation();
   const [text, setText] = useState<TextData>();
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -50,16 +49,11 @@ export default function Text({ corpusId, textId }: Props) {
 
   const p = `/corpora/${corpusId}/${textId}`;
   const tabs = [
-    { label: 'Entities', href: `${p}/entities`, active: false },
-    { label: 'Animals', href: `${p}/animals`, active: false },
-    { label: 'Plants', href: `${p}/plants`, active: false },
-    { label: 'Full text', href: `${p}/fulltext`, active: false },
+    { label: 'Entities', to: `${p}/entities`, active: false },
+    { label: 'Animals', to: `${p}/animals`, active: false },
+    { label: 'Plants', to: `${p}/plants`, active: false },
+    { label: 'Full text', to: `${p}/fulltext`, active: false },
   ];
-  tabs.forEach((t) => {
-    if (t.href === pathname) {
-      t.active = true;
-    }
-  });
 
   return (
     <div>
