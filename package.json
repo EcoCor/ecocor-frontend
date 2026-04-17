@@ -1,95 +1,67 @@
 {
   "name": "ecocor-frontend",
   "version": "0.2.0",
+  "type": "module",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/dh-network/ecocor-frontend.git"
+    "url": "https://github.com/EcoCor/ecocor-frontend.git"
   },
   "dependencies": {
-    "@dracor/react": "0.9.0",
-    "@fortawesome/fontawesome-svg-core": "^6.2.1",
-    "@fortawesome/free-brands-svg-icons": "^6.2.1",
-    "@fortawesome/free-solid-svg-icons": "^6.2.1",
-    "@fortawesome/react-fontawesome": "^0.2.0",
-    "@headlessui/react": "^1.7.15",
-    "@tanstack/react-table": "^8.7.4",
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^13.0.0",
-    "@testing-library/user-event": "^13.2.1",
-    "@types/jest": "^27.0.1",
-    "@types/node": "^16.7.13",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
-    "@types/swagger-ui-react": "^4.18.0",
-    "CETEIcean": "^1.8.0",
-    "axios": "^1.2.1",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-helmet-async": "^1.3.0",
-    "react-markdown": "^8.0.7",
-    "react-router-dom": "^6.4.5",
-    "react-scripts": "5.0.1",
-    "react-wordcloud": "^1.2.7",
-    "swagger-ui-react": "^5.1.3",
-    "typescript": "^4.4.2",
-    "web-vitals": "^2.1.0"
+    "@dracor/react": "1.1.0",
+    "@fortawesome/fontawesome-svg-core": "^7.2.0",
+    "@fortawesome/free-brands-svg-icons": "^7.2.0",
+    "@fortawesome/free-solid-svg-icons": "^7.2.0",
+    "@fortawesome/react-fontawesome": "^3.3.0",
+    "@headlessui/react": "^2.2.10",
+    "@isoterik/react-word-cloud": "^1.3.0",
+    "@tanstack/react-router": "^1.168.22",
+    "@tanstack/react-router-devtools": "^1.166.13",
+    "@tanstack/react-table": "^8.21.3",
+    "CETEIcean": "^1.9.5",
+    "axios": "^1.15.0",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "react-markdown": "^10.1.0",
+    "swagger-ui-react": "^5.32.4",
+    "tippy.js": "^6.3.7"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.13",
-    "http-proxy-middleware": "^2.0.6",
-    "husky": "^8.0.2",
-    "lint-staged": "^13.1.0",
-    "msw": "^0.49.1",
-    "postcss": "^8.4.20",
-    "prettier": "^2.8.1",
-    "tailwindcss": "^3.2.4",
-    "tailwindcss-classnames": "^3.0.7"
-  },
-  "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
-      "prettier --write"
-    ]
+    "@eslint/js": "^9.25.1",
+    "@tailwindcss/postcss": "^4.2.2",
+    "@tailwindcss/vite": "^4.2.2",
+    "@tanstack/router-plugin": "^1.167.22",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^25.6.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@types/swagger-ui-react": "^5.18.0",
+    "@vitejs/plugin-react": "^4.4.1",
+    "eslint": "^9.25.1",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^15.15.0",
+    "jsdom": "^26.1.0",
+    "msw": "^2.13.4",
+    "postcss": "^8.5.10",
+    "prettier": "^3.8.3",
+    "tailwindcss": "^4.2.2",
+    "tailwindcss-classnames": "^3.2.0",
+    "typescript": "~5.7.2",
+    "typescript-eslint": "^8.58.2",
+    "vite": "^6.3.3",
+    "vitest": "^3.1.2"
   },
   "scripts": {
-    "prepare": "husky install",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!axios)/\" --env=jsdom",
+    "start": "vite",
+    "build": "tsc -b && vite build",
+    "test": "vitest",
     "lint": "eslint src",
-    "lint-staged": "lint-staged",
-    "preversion": "./scripts/preversion.sh && yarn test --watchAll=false && yarn build",
-    "postversion": "git push && git push origin v$npm_package_version"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest",
-      "plugin:prettier/recommended",
-      "prettier"
-    ],
-    "rules": {
-      "curly": "error",
-      "import/newline-after-import": "error",
-      "import/order": "error",
-      "no-console": "warn",
-      "spaced-comment": [
-        "error",
-        "always"
-      ]
-    },
-    "overrides": [
-      {
-        "files": [
-          "src/react-app-env.d.ts"
-        ],
-        "rules": {
-          "spaced-comment": "off"
-        }
-      }
-    ]
+    "lint-staged": "lint-staged"
   },
   "browserslist": {
     "production": [
@@ -105,5 +77,9 @@
   },
   "msw": {
     "workerDirectory": "public"
+  },
+  "packageManager": "pnpm@10.7.0+sha512.6b865ad4b62a1d9842b61d674a393903b871d9244954f652b8842c2b553c72176b278f64c463e52d40fff8aba385c235c8c9ecf5cc7de4fd78b8bb6d49633ab6",
+  "pnpm": {
+    "overrides": {}
   }
 }

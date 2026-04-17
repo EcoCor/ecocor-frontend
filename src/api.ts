@@ -6,10 +6,10 @@ import axios, {
 } from 'axios';
 import { CorpusData, Text, Entity } from './types';
 
-const apiUrl = process.env.REACT_APP_ECOCOR_API;
+const apiUrl = import.meta.env.VITE_ECOCOR_API;
 
 const defaultOpts: AxiosRequestConfig = {
-  withCredentials: true,
+  withCredentials: false,
 };
 
 async function fetchData<T>(
@@ -48,9 +48,13 @@ export async function getCorpusTexts(
 }
 
 export async function getCorpusEntities(
-  corpusName: string
+  corpusName: string,
+  type?: string
 ): Promise<AxiosResponse<Entity[]>> {
-  const url = `${apiUrl}/corpora/${corpusName}/entities`;
+  let url = `${apiUrl}/corpora/${corpusName}/entities`;
+  if (type) {
+    url += `?type=${encodeURIComponent(type)}`;
+  }
   return await fetchData<Entity[]>(url);
 }
 

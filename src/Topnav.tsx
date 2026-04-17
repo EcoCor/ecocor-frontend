@@ -14,21 +14,19 @@ export default function Topnav() {
         {
           label: 'About',
           items: [
-            { href: '/doc/about', label: 'What is EcoCor' },
-            { href: '/doc/credits', label: 'Credits' },
-            // { href: '/doc/faq', label: 'FAQ' },
-            { href: '/doc/imprint-and-gdpr', label: 'Imprint and GDPR' },
+            { to: '/doc/about', label: 'What is EcoCor' },
+            { to: '/doc/credits', label: 'Credits' },
+            { to: '/doc/imprint-and-gdpr', label: 'Imprint and GDPR' },
           ],
         },
         {
           label: 'Corpora',
           items: [
-            { href: '/corpora/en', label: 'English EcoCor' },
-            { href: '/corpora/de', label: 'German EcoCor' },
+            { to: '/corpora/en', label: 'English EcoCor' },
+            { to: '/corpora/de', label: 'German EcoCor' },
           ],
         },
-        { label: 'API', href: '/doc/api' },
-        // { label: 'Merch', href: '/merch' },
+        { label: 'API', to: '/doc/api' },
       ]}
     />
   );

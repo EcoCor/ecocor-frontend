@@ -1,126 +1,83 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@import '@dracor/react/dracor.css';
+@source '../node_modules/@dracor/react';
 
-/* rubik-300 - latin-ext_latin */
-@font-face {
-  font-family: 'Rubik';
-  font-style: normal;
-  font-weight: 300;
-  src: local(''),
-    url('./fonts/rubik-v23-latin-ext_latin-300.woff2') format('woff2'),
-    /* Chrome 26+, Opera 23+, Firefox 39+ */
-      url('./fonts/rubik-v23-latin-ext_latin-300.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
-/* rubik-regular - latin-ext_latin */
-@font-face {
-  font-family: 'Rubik';
-  font-style: normal;
-  font-weight: 400;
-  src: local(''),
-    url('./fonts/rubik-v23-latin-ext_latin-regular.woff2') format('woff2'),
-    /* Chrome 26+, Opera 23+, Firefox 39+ */
-      url('./fonts/rubik-v23-latin-ext_latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
-/* rubik-500 - latin-ext_latin */
-@font-face {
-  font-family: 'Rubik';
-  font-style: normal;
-  font-weight: 500;
-  src: local(''),
-    url('./fonts/rubik-v23-latin-ext_latin-500.woff2') format('woff2'),
-    /* Chrome 26+, Opera 23+, Firefox 39+ */
-      url('./fonts/rubik-v23-latin-ext_latin-500.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
-/* rubik-300italic - latin-ext_latin */
-@font-face {
-  font-family: 'Rubik';
-  font-style: italic;
-  font-weight: 300;
-  src: local(''),
-    url('./fonts/rubik-v23-latin-ext_latin-300italic.woff2') format('woff2'),
-    /* Chrome 26+, Opera 23+, Firefox 39+ */
-      url('./fonts/rubik-v23-latin-ext_latin-300italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
-/* rubik-italic - latin-ext_latin */
-@font-face {
-  font-family: 'Rubik';
-  font-style: italic;
-  font-weight: 400;
-  src: local(''),
-    url('./fonts/rubik-v23-latin-ext_latin-italic.woff2') format('woff2'),
-    /* Chrome 26+, Opera 23+, Firefox 39+ */
-      url('./fonts/rubik-v23-latin-ext_latin-italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
-/* rubik-500italic - latin-ext_latin */
-@font-face {
-  font-family: 'Rubik';
-  font-style: italic;
-  font-weight: 500;
-  src: local(''),
-    url('./fonts/rubik-v23-latin-ext_latin-500italic.woff2') format('woff2'),
-    /* Chrome 26+, Opera 23+, Firefox 39+ */
-      url('./fonts/rubik-v23-latin-ext_latin-500italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+@layer utilities {
+  /* rubik-300 - latin-ext_latin */
+  @font-face {
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 300;
+    src:
+      local(''),
+      url('./fonts/rubik-v23-latin-ext_latin-300.woff2') format('woff2'),
+      /* Chrome 26+, Opera 23+, Firefox 39+ */
+        url('./fonts/rubik-v23-latin-ext_latin-300.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  /* rubik-regular - latin-ext_latin */
+  @font-face {
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 400;
+    src:
+      local(''),
+      url('./fonts/rubik-v23-latin-ext_latin-regular.woff2') format('woff2'),
+      /* Chrome 26+, Opera 23+, Firefox 39+ */
+        url('./fonts/rubik-v23-latin-ext_latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  /* rubik-500 - latin-ext_latin */
+  @font-face {
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 500;
+    src:
+      local(''),
+      url('./fonts/rubik-v23-latin-ext_latin-500.woff2') format('woff2'),
+      /* Chrome 26+, Opera 23+, Firefox 39+ */
+        url('./fonts/rubik-v23-latin-ext_latin-500.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  /* rubik-300italic - latin-ext_latin */
+  @font-face {
+    font-family: 'Rubik';
+    font-style: italic;
+    font-weight: 300;
+    src:
+      local(''),
+      url('./fonts/rubik-v23-latin-ext_latin-300italic.woff2') format('woff2'),
+      /* Chrome 26+, Opera 23+, Firefox 39+ */
+        url('./fonts/rubik-v23-latin-ext_latin-300italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  /* rubik-italic - latin-ext_latin */
+  @font-face {
+    font-family: 'Rubik';
+    font-style: italic;
+    font-weight: 400;
+    src:
+      local(''),
+      url('./fonts/rubik-v23-latin-ext_latin-italic.woff2') format('woff2'),
+      /* Chrome 26+, Opera 23+, Firefox 39+ */
+        url('./fonts/rubik-v23-latin-ext_latin-italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  /* rubik-500italic - latin-ext_latin */
+  @font-face {
+    font-family: 'Rubik';
+    font-style: italic;
+    font-weight: 500;
+    src:
+      local(''),
+      url('./fonts/rubik-v23-latin-ext_latin-500italic.woff2') format('woff2'),
+      /* Chrome 26+, Opera 23+, Firefox 39+ */
+        url('./fonts/rubik-v23-latin-ext_latin-500italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
 }
 
 @layer base {
   body {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
     font-family: Rubik;
-    @apply bg-neutral-100;
   }
 
-  a {
-    @apply text-secondary-200;
-  }
-
-  a:hover {
-    color: #0056b3;
-  }
-
-  h1 {
-    @apply text-4xl mb-2 mt-0 font-medium;
-  }
-
-  h2 {
-    @apply text-3xl mb-2 mt-2 font-medium;
-  }
-
-  h3 {
-    @apply text-xl mb-2 mt-2 font-medium;
-  }
-
-  h4 {
-    @apply text-lg mb-2 mt-2 font-medium;
-  }
-
-  p,
-  ul {
-    @apply mb-2;
-  }
-
-  ul {
-    @apply list-inside list-disc space-y-1;
-  }
-
-  li {
-    @apply list-item;
-  }
-
-  table {
-    @apply -mx-4 -mb-4 flex-grow;
-  }
-
-  th {
-    @apply text-left align-top p-4 text-sm font-medium;
-  }
-
-  td {
-    @apply p-4 align-top;
-  }
-
-  input {
-    @apply shadow appearance-none border rounded py-2 px-3 text-gray-700 mb-4;
+  /* Dracor brand colors as CSS variables */
+  :root {
+    --dracor-blue: rgb(31, 36, 72);
   }
 }

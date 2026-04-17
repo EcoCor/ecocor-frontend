@@ -1,13 +1,12 @@
-import { useParams } from 'react-router-dom';
+import { useParams } from '@tanstack/react-router';
 import { TEIText } from '@dracor/react';
 
-const apiUrl = process.env.REACT_APP_ECOCOR_API;
+const apiUrl = import.meta.env.VITE_ECOCOR_API;
 
 export default function FullText() {
-  const { corpusId, textId } = useParams<{
-    corpusId: string;
-    textId: string;
-  }>();
+  const { corpusId, textId } = useParams({
+    from: '/corpora/$corpusId/$textId/fulltext',
+  });
 
   const url = `${apiUrl}/corpora/${corpusId}/texts/${textId}/tei`;
 
