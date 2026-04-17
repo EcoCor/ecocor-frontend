@@ -14,15 +14,20 @@ export default function Topnav() {
         {
           label: 'About',
           items: [
+            // @ts-expect-error - FIXME `to`
             { to: '/doc/about', label: 'What is EcoCor' },
+            // @ts-expect-error - FIXME `to`
             { to: '/doc/credits', label: 'Credits' },
+            // @ts-expect-error - FIXME `to`
             { to: '/doc/imprint-and-gdpr', label: 'Imprint and GDPR' },
           ],
         },
         {
           label: 'Corpora',
           items: [
+            // @ts-expect-error - FIXME `to`
             { to: '/corpora/en', label: 'English EcoCor' },
+            // @ts-expect-error - FIXME `to`
             { to: '/corpora/de', label: 'German EcoCor' },
           ],
         },

@@ -48,12 +48,6 @@ export default function Text({ corpusId, textId }: Props) {
     .filter((id) => !!id);
 
   const p = `/corpora/${corpusId}/${textId}`;
-  const tabs = [
-    { label: 'Entities', to: `${p}/entities`, active: false },
-    { label: 'Animals', to: `${p}/animals`, active: false },
-    { label: 'Plants', to: `${p}/plants`, active: false },
-    { label: 'Full text', to: `${p}/fulltext`, active: false },
-  ];
 
   return (
     <div>
@@ -73,7 +67,18 @@ export default function Text({ corpusId, textId }: Props) {
               ))}
             </div>
           </div>
-          <Tabs data={tabs} />
+          <Tabs
+            data={[
+              // @ts-expect-error - FIXME `to`
+              { label: 'Entities', to: `${p}/entities`, active: false },
+              // @ts-expect-error - FIXME `to`
+              { label: 'Animals', to: `${p}/animals`, active: false },
+              // @ts-expect-error - FIXME `to`
+              { label: 'Plants', to: `${p}/plants`, active: false },
+              // @ts-expect-error - FIXME `to`
+              { label: 'Full text', to: `${p}/fulltext`, active: false },
+            ]}
+          />
           <Outlet />
         </section>
       )}
