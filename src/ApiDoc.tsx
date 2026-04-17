@@ -1,4 +1,3 @@
-import { Helmet } from 'react-helmet-async';
 import SwaggerUI from 'swagger-ui-react';
 
 import 'swagger-ui-react/swagger-ui.css';
@@ -11,11 +10,7 @@ export interface Props {
 export default function ApiDoc({ url, title }: Props) {
   return (
     <div>
-      {title && (
-        <Helmet>
-          <title>{title}</title>
-        </Helmet>
-      )}
+      {title && <title>{title}</title>}
       <SwaggerUI url={url} deepLinking />
     </div>
   );

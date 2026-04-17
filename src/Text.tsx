@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { Outlet, useLocation } from '@tanstack/react-router';
 import { AuthorInfo, IdCopy, Tabs } from '@dracor/react';
 import { getText } from './api';
@@ -64,9 +63,7 @@ export default function Text({ corpusId, textId }: Props) {
 
   return (
     <div>
-      <Helmet>
-        <title>{authorTitle}</title>
-      </Helmet>
+      <title>{authorTitle}</title>
       {loading && <p>loading...</p>}
       {text && (
         <section>

@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { getCorpora } from './api';
 import { CorpusListEntry } from './types';
 import CorpusCard from './CorpusCard';
@@ -32,9 +31,7 @@ export default function Corpora() {
 
   return (
     <div>
-      <Helmet>
-        <title>EcoCor: Corpora</title>
-      </Helmet>
+      <title>EcoCor: Corpora</title>
       <section>
         {loading && <p>loading...</p>}
         <div className="flex flex-row justify-center pb-4">

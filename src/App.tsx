@@ -1,4 +1,3 @@
-import { HelmetProvider } from 'react-helmet-async';
 import { RouterProvider, createRouter } from '@tanstack/react-router';
 import { routeTree } from './routeTree.gen';
 
@@ -11,11 +10,7 @@ declare module '@tanstack/react-router' {
 }
 
 function App() {
-  return (
-    <HelmetProvider>
-      <RouterProvider router={router} />
-    </HelmetProvider>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

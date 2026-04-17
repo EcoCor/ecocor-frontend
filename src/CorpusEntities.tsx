@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { useParams } from '@tanstack/react-router';
 import { getCorpusEntities, getCorpus } from './api';
 import { CorpusData, Entity } from './types';
@@ -82,9 +81,7 @@ export default function CorpusEntities() {
 
   return (
     <div>
-      <Helmet>
-        <title>Corpus: {corpus?.title || 'loading...'}</title>
-      </Helmet>
+      <title>{`Corpus: ${corpus?.title || 'loading...'}`}</title>{' '}
       {loading && <p>loading...</p>}
       {corpus && (
         <section className="space-y-6">

@@ -1,5 +1,4 @@
 import { useEffect, useState, useMemo } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { Link } from '@tanstack/react-router';
 import { ColumnDef } from '@tanstack/react-table';
 import { IdLink, Table } from '@dracor/react';
@@ -145,9 +144,7 @@ export default function Corpus({ id }: Props) {
 
   return (
     <div>
-      <Helmet>
-        <title>Corpus: {corpus?.title || 'loading...'}</title>
-      </Helmet>
+      <title>{`Corpus: ${corpus?.title || 'loading...'}`}</title>
       {loading && <p>loading...</p>}
       {corpus && (
         <section className="space-y-6">
