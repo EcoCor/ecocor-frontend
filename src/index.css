@@ -81,3 +81,95 @@
     --dracor-blue: rgb(31, 36, 72);
   }
 }
+
+@layer components {
+  .corpora-stage {
+    display: block;
+  }
+
+  .corpora-stage-copy,
+  .corpora-stage-deck {
+    width: 100%;
+  }
+
+  .deck-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .deck-slot {
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .deck-layout {
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      gap: 0;
+      padding-top: 0.75rem;
+      padding-bottom: 0.75rem;
+    }
+
+    .deck-slot {
+      width: min(42vw, 34rem);
+      max-width: 34rem;
+      transition: transform 320ms ease;
+      will-change: transform;
+    }
+
+    .deck-slot--1 {
+      z-index: 1;
+      transform: translateX(2rem) rotate(-4.8deg);
+    }
+
+    .deck-slot--2 {
+      z-index: 2;
+      margin-left: -5.5rem;
+      transform: translateX(-2rem) rotate(4.1deg);
+    }
+
+    .deck-slot:hover,
+    .deck-slot:focus-within {
+      z-index: 3;
+      transform: translateY(-0.25rem) scale(1.01);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .corpora-stage {
+      display: grid;
+      grid-template-columns: 50vw 50vw;
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      align-items: center;
+      min-height: 72vh;
+    }
+
+    .corpora-stage-copy {
+      padding-left: clamp(1rem, 5vw, 5rem);
+      padding-right: clamp(1rem, 3vw, 3rem);
+    }
+
+    .corpora-stage-deck {
+      justify-content: flex-start;
+      padding-left: clamp(0.5rem, 2vw, 2rem);
+      padding-right: clamp(1rem, 4vw, 4rem);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .deck-slot {
+      transition: none !important;
+      transform: none !important;
+      margin-left: 0 !important;
+      will-change: auto;
+    }
+
+    .deck-layout {
+      gap: 1.5rem;
+    }
+  }
+}
