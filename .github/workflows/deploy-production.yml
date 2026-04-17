@@ -1,0 +1,16 @@
+name: Deploy to production
+
+on:
+  workflow_dispatch:
+  # release:
+  #   types: [released]
+
+jobs:
+  production:
+    uses: EcoCor/ecocor-frontend/.github/workflows/deployment.yml@main
+    with:
+      host: ecocor.org
+      deploy-path: /var/www/html
+    secrets:
+      deploy-key: ${{ secrets.ECOCOR_DEPLOY_KEY }}
+      deploy-user: ${{ secrets.ECOCOR_DEPLOY_USER }}

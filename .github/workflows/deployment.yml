@@ -1,0 +1,54 @@
+name: Deployment
+
+on:
+  workflow_call:
+    inputs:
+      host:
+        required: true
+        type: string
+      deploy-path:
+        required: true
+        type: string
+    secrets:
+      deploy-key:
+        required: true
+      deploy-user:
+        required: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          fetch-tags: true
+          fetch-depth: 0
+      - name: Install pnpm
+        uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v5.0.0
+        with:
+          version: 10
+      - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
+        with:
+          node-version: 24
+          cache: "pnpm"
+      - name: Restore node_modules
+        uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+
+      - run: git describe --tags --dirty --always
+      - run: pnpm install
+      - run: pnpm build
+      - uses: webfactory/ssh-agent@e83874834305fe9a4a2997156cb26c5de65a8555 # v0.10.0
+        with:
+          ssh-private-key: ${{ secrets.deploy-key }}
+
+      - name: Deploy to ${{ inputs.host }}
+        run: |
+          rsync -rlvz --delete \
+            --exclude=robots.txt \
+            --exclude=google*.html \
+            -e 'ssh -o StrictHostKeyChecking=no' \
+            dist/ \
+            ${{ secrets.deploy-user }}@${{ inputs.host }}:${{ inputs.deploy-path }}/
