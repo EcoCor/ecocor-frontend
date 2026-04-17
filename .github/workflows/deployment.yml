@@ -50,5 +50,5 @@ jobs:
             --exclude=robots.txt \
             --exclude=google*.html \
             -e 'ssh -o StrictHostKeyChecking=no' \
-            dist/ \
+            build/ \
             ${{ secrets.deploy-user }}@${{ inputs.host }}:${{ inputs.deploy-path }}/
