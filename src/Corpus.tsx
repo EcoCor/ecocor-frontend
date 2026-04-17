@@ -149,14 +149,17 @@ export default function Corpus({ id }: Props) {
       {corpus && (
         <section className="space-y-6">
           <h1>{corpus.title}</h1>
-          {loadingEntities && (
-            <div className="text-center">Loading entities...</div>
-          )}
-          {words.length > 0 && (
-            <section className="rounded-3xl bg-white/80 p-4 shadow-sm ring-1 ring-slate-200">
-              <WordCloud words={words} />
-            </section>
-          )}
+          <section className="rounded-3xl bg-white/80 p-4 shadow-sm ring-1 ring-slate-200">
+            {loadingEntities && (
+              <div
+                className="flex items-center justify-center"
+                style={{ height: 360 }}
+              >
+                Loading entities...
+              </div>
+            )}
+            {words.length > 0 && <WordCloud words={words} />}
+          </section>
           {texts.length > 0 && <Table data={texts} columns={columns} />}
         </section>
       )}
