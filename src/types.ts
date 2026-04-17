@@ -71,6 +71,7 @@ export interface EntityOccurrence {
 export interface Entity {
   id: string;
   name: string;
+  type: 'Animal' | 'Plant';
   metrics: {
     overallFrequency: number;
     occurrences: EntityOccurrence[];

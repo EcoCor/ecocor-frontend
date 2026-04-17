@@ -3,11 +3,7 @@ import { ColumnDef } from '@tanstack/react-table';
 import { IdLink, Table } from '@dracor/react';
 import { getTextEntities } from './api';
 import { Entity } from './types';
-import WordCloud, { type CloudWord, type WordKind } from './WordCloud';
-
-type TypedEntity = Entity & {
-  kind: WordKind;
-};
+import WordCloud, { type CloudWord } from './WordCloud';
 
 export interface Props {
   corpusId: string;
@@ -16,7 +12,7 @@ export interface Props {
 }
 
 export default function TextEntities({ corpusId, textId, type }: Props) {
-  const [entities, setEntities] = useState<TypedEntity[]>([]);
+  const [entities, setEntities] = useState<Entity[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
@@ -36,22 +32,9 @@ export default function TextEntities({ corpusId, textId, type }: Props) {
             );
           }
         } else {
-          const [animalsResp, plantsResp] = await Promise.all([
-            getTextEntities(corpusId!, textId!, 'Animal'),
-            getTextEntities(corpusId!, textId!, 'Plant'),
-          ]);
-
+          const resp = await getTextEntities(corpusId, textId);
           if (isMounted) {
-            setEntities([
-              ...animalsResp.data.map((entity) => ({
-                ...entity,
-                kind: 'Animal' as const,
-              })),
-              ...plantsResp.data.map((entity) => ({
-                ...entity,
-                kind: 'Plant' as const,
-              })),
-            ]);
+            setEntities(resp.data);
           }
         }
       } catch (error) {
@@ -68,7 +51,7 @@ export default function TextEntities({ corpusId, textId, type }: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [corpusId, textId, type]);
 
-  const columns = useMemo<ColumnDef<TypedEntity>[]>(
+  const columns = useMemo<ColumnDef<Entity>[]>(
     () => [
       {
         accessorKey: 'name',
@@ -94,10 +77,10 @@ export default function TextEntities({ corpusId, textId, type }: Props) {
   );
 
   const words: CloudWord[] = entities.map(
-    ({ name, metrics: { overallFrequency }, kind }) => ({
+    ({ name, metrics: { overallFrequency }, type }) => ({
       text: name,
       value: overallFrequency,
-      kind,
+      kind: type,
     })
   );
 

@@ -6,20 +6,16 @@ import { IdLink, Table } from '@dracor/react';
 import { getCorpus, getCorpusEntities, getCorpusTexts } from './api';
 import { CorpusData, Entity, Text } from './types';
 import WordCloud from './WordCloud';
-import { type CloudWord, type WordKind } from './WordCloud';
+import { type CloudWord } from './WordCloud';
 
 export interface Props {
   id: string;
 }
 
-type TypedEntity = Entity & {
-  kind: WordKind;
-};
-
 export default function Corpus({ id }: Props) {
   const [corpus, setCorpus] = useState<CorpusData>();
   const [texts, setTexts] = useState<Text[]>([]);
-  const [entities, setEntities] = useState<TypedEntity[]>([]);
+  const [entities, setEntities] = useState<Entity[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [loadingEntities, setLoadingEntities] = useState<boolean>(false);
 
@@ -61,21 +57,9 @@ export default function Corpus({ id }: Props) {
       setLoadingEntities(true);
       setEntities([]);
       try {
-        const [animalsResp, plantsResp] = await Promise.all([
-          getCorpusEntities(id!, 'Animal'),
-          getCorpusEntities(id!, 'Plant'),
-        ]);
+        const resp = await getCorpusEntities(id);
         if (isMounted) {
-          setEntities([
-            ...animalsResp.data.map((entity) => ({
-              ...entity,
-              kind: 'Animal' as const,
-            })),
-            ...plantsResp.data.map((entity) => ({
-              ...entity,
-              kind: 'Plant' as const,
-            })),
-          ]);
+          setEntities(resp.data);
         }
       } catch (error) {
         console.log(error);
@@ -91,10 +75,10 @@ export default function Corpus({ id }: Props) {
   }, [id]);
 
   const words: CloudWord[] = entities.map(
-    ({ name, metrics: { overallFrequency }, kind }) => ({
+    ({ name, metrics: { overallFrequency }, type }) => ({
       text: name,
       value: overallFrequency,
-      kind,
+      kind: type,
     })
   );
 
