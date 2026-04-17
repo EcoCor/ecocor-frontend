@@ -47,6 +47,7 @@ export interface CorpusListEntry {
   license: string;
   licenseUrl: string;
   uri: string;
+  commit?: string;
   metrics?: CorpusMetrics;
   updated?: string;
 }
@@ -59,6 +60,7 @@ export interface CorpusData {
   license: string;
   licenseUrl: string;
   uri: string;
+  commit?: string;
   metrics?: CorpusMetrics;
 }
 

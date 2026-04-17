@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import { Link } from '@tanstack/react-router';
 import {
   classnames,
@@ -7,6 +8,7 @@ import {
   textAlign,
   TTailwindString,
 } from 'tailwindcss-classnames';
+import { Commit } from '@dracor/react';
 import { CorpusListEntry } from './types';
 
 function CorpusCardRow({
@@ -15,9 +17,10 @@ function CorpusCardRow({
   dataStyle,
 }: {
   label: string;
-  data: number | string;
+  data: number | string | ReactNode;
   dataStyle?: TTailwindString;
 }) {
+  const content = typeof data === 'number' ? data.toLocaleString('en') : data;
   const cellStyle = classnames(padding('pt-2', 'pb-1', 'px-3'));
   const tdStyle = classnames(cellStyle, fontWeight('font-bold'), dataStyle);
   const thStyle = classnames(
@@ -27,14 +30,15 @@ function CorpusCardRow({
   );
   return (
     <tr className="border-b-2 text-primary font-normal">
-      <td className={tdStyle}>{data.toLocaleString('en')}</td>
+      <td className={tdStyle}>{content}</td>
       <th className={thStyle}>{label}</th>
     </tr>
   );
 }
 
 export default function CorpusCard({ corpus }: { corpus: CorpusListEntry }) {
-  const { name, title, metrics, updated } = corpus;
+  const { name, title, commit, repository, metrics, updated } = corpus;
+  const repoUrl = repository?.split('#')[0];
   return (
     <div className="rounded-xl inline-block shadow-lg">
       <div className="bg-white rounded-t-xl p-2 text-2xl font-bold">
@@ -70,6 +74,10 @@ export default function CorpusCard({ corpus }: { corpus: CorpusListEntry }) {
             <CorpusCardRow
               label="Number of Plants"
               data={metrics.numOfPlants}
+            />
+            <CorpusCardRow
+              label="Git commit"
+              data={commit ? <Commit repo={repoUrl}>{commit}</Commit> : 'n/a'}
             />
             <CorpusCardRow
               label="last update"
