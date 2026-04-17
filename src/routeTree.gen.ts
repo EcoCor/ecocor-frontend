@@ -8,234 +8,82 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-// Import Routes
+import { Route as rootRouteImport } from './routes/__root';
+import { Route as IndexRouteImport } from './routes/index';
+import { Route as CorporaIndexRouteImport } from './routes/corpora/index';
+import { Route as DocApiRouteImport } from './routes/doc/api';
+import { Route as DocIdRouteImport } from './routes/doc/$id';
+import { Route as CorporaCorpusIdIndexRouteImport } from './routes/corpora/$corpusId/index';
+import { Route as CorporaCorpusIdTextIdRouteRouteImport } from './routes/corpora/$corpusId/$textId/route';
+import { Route as CorporaCorpusIdTextIdIndexRouteImport } from './routes/corpora/$corpusId/$textId/index';
+import { Route as CorporaCorpusIdTextIdPlantsRouteImport } from './routes/corpora/$corpusId/$textId/plants';
+import { Route as CorporaCorpusIdTextIdFulltextRouteImport } from './routes/corpora/$corpusId/$textId/fulltext';
+import { Route as CorporaCorpusIdTextIdEntitiesRouteImport } from './routes/corpora/$corpusId/$textId/entities';
+import { Route as CorporaCorpusIdTextIdAnimalsRouteImport } from './routes/corpora/$corpusId/$textId/animals';
 
-import { Route as rootRoute } from './routes/__root';
-import { Route as IndexImport } from './routes/index';
-import { Route as CorporaIndexImport } from './routes/corpora/index';
-import { Route as DocApiImport } from './routes/doc/api';
-import { Route as DocIdImport } from './routes/doc/$id';
-import { Route as CorporaCorpusIdIndexImport } from './routes/corpora/$corpusId/index';
-import { Route as CorporaCorpusIdTextIdRouteImport } from './routes/corpora/$corpusId/$textId/route';
-import { Route as CorporaCorpusIdTextIdIndexImport } from './routes/corpora/$corpusId/$textId/index';
-import { Route as CorporaCorpusIdTextIdPlantsImport } from './routes/corpora/$corpusId/$textId/plants';
-import { Route as CorporaCorpusIdTextIdFulltextImport } from './routes/corpora/$corpusId/$textId/fulltext';
-import { Route as CorporaCorpusIdTextIdEntitiesImport } from './routes/corpora/$corpusId/$textId/entities';
-import { Route as CorporaCorpusIdTextIdAnimalsImport } from './routes/corpora/$corpusId/$textId/animals';
-
-// Create/Update Routes
-
-const IndexRoute = IndexImport.update({
+const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any);
-
-const CorporaIndexRoute = CorporaIndexImport.update({
+const CorporaIndexRoute = CorporaIndexRouteImport.update({
   id: '/corpora/',
   path: '/corpora/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any);
-
-const DocApiRoute = DocApiImport.update({
+const DocApiRoute = DocApiRouteImport.update({
   id: '/doc/api',
   path: '/doc/api',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any);
-
-const DocIdRoute = DocIdImport.update({
+const DocIdRoute = DocIdRouteImport.update({
   id: '/doc/$id',
   path: '/doc/$id',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any);
-
-const CorporaCorpusIdIndexRoute = CorporaCorpusIdIndexImport.update({
+const CorporaCorpusIdIndexRoute = CorporaCorpusIdIndexRouteImport.update({
   id: '/corpora/$corpusId/',
   path: '/corpora/$corpusId/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any);
-
-const CorporaCorpusIdTextIdRouteRoute = CorporaCorpusIdTextIdRouteImport.update(
-  {
+const CorporaCorpusIdTextIdRouteRoute =
+  CorporaCorpusIdTextIdRouteRouteImport.update({
     id: '/corpora/$corpusId/$textId',
     path: '/corpora/$corpusId/$textId',
-    getParentRoute: () => rootRoute,
-  } as any
-);
-
-const CorporaCorpusIdTextIdIndexRoute = CorporaCorpusIdTextIdIndexImport.update(
-  {
+    getParentRoute: () => rootRouteImport,
+  } as any);
+const CorporaCorpusIdTextIdIndexRoute =
+  CorporaCorpusIdTextIdIndexRouteImport.update({
     id: '/',
     path: '/',
     getParentRoute: () => CorporaCorpusIdTextIdRouteRoute,
-  } as any
-);
-
+  } as any);
 const CorporaCorpusIdTextIdPlantsRoute =
-  CorporaCorpusIdTextIdPlantsImport.update({
+  CorporaCorpusIdTextIdPlantsRouteImport.update({
     id: '/plants',
     path: '/plants',
     getParentRoute: () => CorporaCorpusIdTextIdRouteRoute,
   } as any);
-
 const CorporaCorpusIdTextIdFulltextRoute =
-  CorporaCorpusIdTextIdFulltextImport.update({
+  CorporaCorpusIdTextIdFulltextRouteImport.update({
     id: '/fulltext',
     path: '/fulltext',
     getParentRoute: () => CorporaCorpusIdTextIdRouteRoute,
   } as any);
-
 const CorporaCorpusIdTextIdEntitiesRoute =
-  CorporaCorpusIdTextIdEntitiesImport.update({
+  CorporaCorpusIdTextIdEntitiesRouteImport.update({
     id: '/entities',
     path: '/entities',
     getParentRoute: () => CorporaCorpusIdTextIdRouteRoute,
   } as any);
-
 const CorporaCorpusIdTextIdAnimalsRoute =
-  CorporaCorpusIdTextIdAnimalsImport.update({
+  CorporaCorpusIdTextIdAnimalsRouteImport.update({
     id: '/animals',
     path: '/animals',
     getParentRoute: () => CorporaCorpusIdTextIdRouteRoute,
   } as any);
 
-// Populate the FileRoutesByPath interface
-
-declare module '@tanstack/react-router' {
-  interface FileRoutesByPath {
-    '/': {
-      id: '/';
-      path: '/';
-      fullPath: '/';
-      preLoaderRoute: typeof IndexImport;
-      parentRoute: typeof rootRoute;
-    };
-    '/doc/$id': {
-      id: '/doc/$id';
-      path: '/doc/$id';
-      fullPath: '/doc/$id';
-      preLoaderRoute: typeof DocIdImport;
-      parentRoute: typeof rootRoute;
-    };
-    '/doc/api': {
-      id: '/doc/api';
-      path: '/doc/api';
-      fullPath: '/doc/api';
-      preLoaderRoute: typeof DocApiImport;
-      parentRoute: typeof rootRoute;
-    };
-    '/corpora/': {
-      id: '/corpora/';
-      path: '/corpora';
-      fullPath: '/corpora';
-      preLoaderRoute: typeof CorporaIndexImport;
-      parentRoute: typeof rootRoute;
-    };
-    '/corpora/$corpusId/$textId': {
-      id: '/corpora/$corpusId/$textId';
-      path: '/corpora/$corpusId/$textId';
-      fullPath: '/corpora/$corpusId/$textId';
-      preLoaderRoute: typeof CorporaCorpusIdTextIdRouteImport;
-      parentRoute: typeof rootRoute;
-    };
-    '/corpora/$corpusId/': {
-      id: '/corpora/$corpusId/';
-      path: '/corpora/$corpusId';
-      fullPath: '/corpora/$corpusId';
-      preLoaderRoute: typeof CorporaCorpusIdIndexImport;
-      parentRoute: typeof rootRoute;
-    };
-    '/corpora/$corpusId/$textId/animals': {
-      id: '/corpora/$corpusId/$textId/animals';
-      path: '/animals';
-      fullPath: '/corpora/$corpusId/$textId/animals';
-      preLoaderRoute: typeof CorporaCorpusIdTextIdAnimalsImport;
-      parentRoute: typeof CorporaCorpusIdTextIdRouteImport;
-    };
-    '/corpora/$corpusId/$textId/entities': {
-      id: '/corpora/$corpusId/$textId/entities';
-      path: '/entities';
-      fullPath: '/corpora/$corpusId/$textId/entities';
-      preLoaderRoute: typeof CorporaCorpusIdTextIdEntitiesImport;
-      parentRoute: typeof CorporaCorpusIdTextIdRouteImport;
-    };
-    '/corpora/$corpusId/$textId/fulltext': {
-      id: '/corpora/$corpusId/$textId/fulltext';
-      path: '/fulltext';
-      fullPath: '/corpora/$corpusId/$textId/fulltext';
-      preLoaderRoute: typeof CorporaCorpusIdTextIdFulltextImport;
-      parentRoute: typeof CorporaCorpusIdTextIdRouteImport;
-    };
-    '/corpora/$corpusId/$textId/plants': {
-      id: '/corpora/$corpusId/$textId/plants';
-      path: '/plants';
-      fullPath: '/corpora/$corpusId/$textId/plants';
-      preLoaderRoute: typeof CorporaCorpusIdTextIdPlantsImport;
-      parentRoute: typeof CorporaCorpusIdTextIdRouteImport;
-    };
-    '/corpora/$corpusId/$textId/': {
-      id: '/corpora/$corpusId/$textId/';
-      path: '/';
-      fullPath: '/corpora/$corpusId/$textId/';
-      preLoaderRoute: typeof CorporaCorpusIdTextIdIndexImport;
-      parentRoute: typeof CorporaCorpusIdTextIdRouteImport;
-    };
-  }
-}
-
-// Create and export the route tree
-
-interface CorporaCorpusIdTextIdRouteRouteChildren {
-  CorporaCorpusIdTextIdAnimalsRoute: typeof CorporaCorpusIdTextIdAnimalsRoute;
-  CorporaCorpusIdTextIdEntitiesRoute: typeof CorporaCorpusIdTextIdEntitiesRoute;
-  CorporaCorpusIdTextIdFulltextRoute: typeof CorporaCorpusIdTextIdFulltextRoute;
-  CorporaCorpusIdTextIdPlantsRoute: typeof CorporaCorpusIdTextIdPlantsRoute;
-  CorporaCorpusIdTextIdIndexRoute: typeof CorporaCorpusIdTextIdIndexRoute;
-}
-
-const CorporaCorpusIdTextIdRouteRouteChildren: CorporaCorpusIdTextIdRouteRouteChildren =
-  {
-    CorporaCorpusIdTextIdAnimalsRoute: CorporaCorpusIdTextIdAnimalsRoute,
-    CorporaCorpusIdTextIdEntitiesRoute: CorporaCorpusIdTextIdEntitiesRoute,
-    CorporaCorpusIdTextIdFulltextRoute: CorporaCorpusIdTextIdFulltextRoute,
-    CorporaCorpusIdTextIdPlantsRoute: CorporaCorpusIdTextIdPlantsRoute,
-    CorporaCorpusIdTextIdIndexRoute: CorporaCorpusIdTextIdIndexRoute,
-  };
-
-const CorporaCorpusIdTextIdRouteRouteWithChildren =
-  CorporaCorpusIdTextIdRouteRoute._addFileChildren(
-    CorporaCorpusIdTextIdRouteRouteChildren
-  );
-
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute;
-  '/doc/$id': typeof DocIdRoute;
-  '/doc/api': typeof DocApiRoute;
-  '/corpora': typeof CorporaIndexRoute;
-  '/corpora/$corpusId/$textId': typeof CorporaCorpusIdTextIdRouteRouteWithChildren;
-  '/corpora/$corpusId': typeof CorporaCorpusIdIndexRoute;
-  '/corpora/$corpusId/$textId/animals': typeof CorporaCorpusIdTextIdAnimalsRoute;
-  '/corpora/$corpusId/$textId/entities': typeof CorporaCorpusIdTextIdEntitiesRoute;
-  '/corpora/$corpusId/$textId/fulltext': typeof CorporaCorpusIdTextIdFulltextRoute;
-  '/corpora/$corpusId/$textId/plants': typeof CorporaCorpusIdTextIdPlantsRoute;
-  '/corpora/$corpusId/$textId/': typeof CorporaCorpusIdTextIdIndexRoute;
-}
-
-export interface FileRoutesByTo {
-  '/': typeof IndexRoute;
-  '/doc/$id': typeof DocIdRoute;
-  '/doc/api': typeof DocApiRoute;
-  '/corpora': typeof CorporaIndexRoute;
-  '/corpora/$corpusId': typeof CorporaCorpusIdIndexRoute;
-  '/corpora/$corpusId/$textId/animals': typeof CorporaCorpusIdTextIdAnimalsRoute;
-  '/corpora/$corpusId/$textId/entities': typeof CorporaCorpusIdTextIdEntitiesRoute;
-  '/corpora/$corpusId/$textId/fulltext': typeof CorporaCorpusIdTextIdFulltextRoute;
-  '/corpora/$corpusId/$textId/plants': typeof CorporaCorpusIdTextIdPlantsRoute;
-  '/corpora/$corpusId/$textId': typeof CorporaCorpusIdTextIdIndexRoute;
-}
-
-export interface FileRoutesById {
-  __root__: typeof rootRoute;
   '/': typeof IndexRoute;
   '/doc/$id': typeof DocIdRoute;
   '/doc/api': typeof DocApiRoute;
@@ -248,16 +96,41 @@ export interface FileRoutesById {
   '/corpora/$corpusId/$textId/plants': typeof CorporaCorpusIdTextIdPlantsRoute;
   '/corpora/$corpusId/$textId/': typeof CorporaCorpusIdTextIdIndexRoute;
 }
-
+export interface FileRoutesByTo {
+  '/': typeof IndexRoute;
+  '/doc/$id': typeof DocIdRoute;
+  '/doc/api': typeof DocApiRoute;
+  '/corpora': typeof CorporaIndexRoute;
+  '/corpora/$corpusId': typeof CorporaCorpusIdIndexRoute;
+  '/corpora/$corpusId/$textId/animals': typeof CorporaCorpusIdTextIdAnimalsRoute;
+  '/corpora/$corpusId/$textId/entities': typeof CorporaCorpusIdTextIdEntitiesRoute;
+  '/corpora/$corpusId/$textId/fulltext': typeof CorporaCorpusIdTextIdFulltextRoute;
+  '/corpora/$corpusId/$textId/plants': typeof CorporaCorpusIdTextIdPlantsRoute;
+  '/corpora/$corpusId/$textId': typeof CorporaCorpusIdTextIdIndexRoute;
+}
+export interface FileRoutesById {
+  __root__: typeof rootRouteImport;
+  '/': typeof IndexRoute;
+  '/doc/$id': typeof DocIdRoute;
+  '/doc/api': typeof DocApiRoute;
+  '/corpora/': typeof CorporaIndexRoute;
+  '/corpora/$corpusId/$textId': typeof CorporaCorpusIdTextIdRouteRouteWithChildren;
+  '/corpora/$corpusId/': typeof CorporaCorpusIdIndexRoute;
+  '/corpora/$corpusId/$textId/animals': typeof CorporaCorpusIdTextIdAnimalsRoute;
+  '/corpora/$corpusId/$textId/entities': typeof CorporaCorpusIdTextIdEntitiesRoute;
+  '/corpora/$corpusId/$textId/fulltext': typeof CorporaCorpusIdTextIdFulltextRoute;
+  '/corpora/$corpusId/$textId/plants': typeof CorporaCorpusIdTextIdPlantsRoute;
+  '/corpora/$corpusId/$textId/': typeof CorporaCorpusIdTextIdIndexRoute;
+}
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath;
   fullPaths:
     | '/'
     | '/doc/$id'
     | '/doc/api'
-    | '/corpora'
+    | '/corpora/'
     | '/corpora/$corpusId/$textId'
-    | '/corpora/$corpusId'
+    | '/corpora/$corpusId/'
     | '/corpora/$corpusId/$textId/animals'
     | '/corpora/$corpusId/$textId/entities'
     | '/corpora/$corpusId/$textId/fulltext'
@@ -290,7 +163,6 @@ export interface FileRouteTypes {
     | '/corpora/$corpusId/$textId/';
   fileRoutesById: FileRoutesById;
 }
-
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute;
   DocIdRoute: typeof DocIdRoute;
@@ -300,6 +172,110 @@ export interface RootRouteChildren {
   CorporaCorpusIdIndexRoute: typeof CorporaCorpusIdIndexRoute;
 }
 
+declare module '@tanstack/react-router' {
+  interface FileRoutesByPath {
+    '/': {
+      id: '/';
+      path: '/';
+      fullPath: '/';
+      preLoaderRoute: typeof IndexRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    '/corpora/': {
+      id: '/corpora/';
+      path: '/corpora';
+      fullPath: '/corpora/';
+      preLoaderRoute: typeof CorporaIndexRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    '/doc/api': {
+      id: '/doc/api';
+      path: '/doc/api';
+      fullPath: '/doc/api';
+      preLoaderRoute: typeof DocApiRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    '/doc/$id': {
+      id: '/doc/$id';
+      path: '/doc/$id';
+      fullPath: '/doc/$id';
+      preLoaderRoute: typeof DocIdRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    '/corpora/$corpusId/': {
+      id: '/corpora/$corpusId/';
+      path: '/corpora/$corpusId';
+      fullPath: '/corpora/$corpusId/';
+      preLoaderRoute: typeof CorporaCorpusIdIndexRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    '/corpora/$corpusId/$textId': {
+      id: '/corpora/$corpusId/$textId';
+      path: '/corpora/$corpusId/$textId';
+      fullPath: '/corpora/$corpusId/$textId';
+      preLoaderRoute: typeof CorporaCorpusIdTextIdRouteRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    '/corpora/$corpusId/$textId/': {
+      id: '/corpora/$corpusId/$textId/';
+      path: '/';
+      fullPath: '/corpora/$corpusId/$textId/';
+      preLoaderRoute: typeof CorporaCorpusIdTextIdIndexRouteImport;
+      parentRoute: typeof CorporaCorpusIdTextIdRouteRoute;
+    };
+    '/corpora/$corpusId/$textId/plants': {
+      id: '/corpora/$corpusId/$textId/plants';
+      path: '/plants';
+      fullPath: '/corpora/$corpusId/$textId/plants';
+      preLoaderRoute: typeof CorporaCorpusIdTextIdPlantsRouteImport;
+      parentRoute: typeof CorporaCorpusIdTextIdRouteRoute;
+    };
+    '/corpora/$corpusId/$textId/fulltext': {
+      id: '/corpora/$corpusId/$textId/fulltext';
+      path: '/fulltext';
+      fullPath: '/corpora/$corpusId/$textId/fulltext';
+      preLoaderRoute: typeof CorporaCorpusIdTextIdFulltextRouteImport;
+      parentRoute: typeof CorporaCorpusIdTextIdRouteRoute;
+    };
+    '/corpora/$corpusId/$textId/entities': {
+      id: '/corpora/$corpusId/$textId/entities';
+      path: '/entities';
+      fullPath: '/corpora/$corpusId/$textId/entities';
+      preLoaderRoute: typeof CorporaCorpusIdTextIdEntitiesRouteImport;
+      parentRoute: typeof CorporaCorpusIdTextIdRouteRoute;
+    };
+    '/corpora/$corpusId/$textId/animals': {
+      id: '/corpora/$corpusId/$textId/animals';
+      path: '/animals';
+      fullPath: '/corpora/$corpusId/$textId/animals';
+      preLoaderRoute: typeof CorporaCorpusIdTextIdAnimalsRouteImport;
+      parentRoute: typeof CorporaCorpusIdTextIdRouteRoute;
+    };
+  }
+}
+
+interface CorporaCorpusIdTextIdRouteRouteChildren {
+  CorporaCorpusIdTextIdAnimalsRoute: typeof CorporaCorpusIdTextIdAnimalsRoute;
+  CorporaCorpusIdTextIdEntitiesRoute: typeof CorporaCorpusIdTextIdEntitiesRoute;
+  CorporaCorpusIdTextIdFulltextRoute: typeof CorporaCorpusIdTextIdFulltextRoute;
+  CorporaCorpusIdTextIdPlantsRoute: typeof CorporaCorpusIdTextIdPlantsRoute;
+  CorporaCorpusIdTextIdIndexRoute: typeof CorporaCorpusIdTextIdIndexRoute;
+}
+
+const CorporaCorpusIdTextIdRouteRouteChildren: CorporaCorpusIdTextIdRouteRouteChildren =
+  {
+    CorporaCorpusIdTextIdAnimalsRoute: CorporaCorpusIdTextIdAnimalsRoute,
+    CorporaCorpusIdTextIdEntitiesRoute: CorporaCorpusIdTextIdEntitiesRoute,
+    CorporaCorpusIdTextIdFulltextRoute: CorporaCorpusIdTextIdFulltextRoute,
+    CorporaCorpusIdTextIdPlantsRoute: CorporaCorpusIdTextIdPlantsRoute,
+    CorporaCorpusIdTextIdIndexRoute: CorporaCorpusIdTextIdIndexRoute,
+  };
+
+const CorporaCorpusIdTextIdRouteRouteWithChildren =
+  CorporaCorpusIdTextIdRouteRoute._addFileChildren(
+    CorporaCorpusIdTextIdRouteRouteChildren
+  );
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DocIdRoute: DocIdRoute,
@@ -308,70 +284,6 @@ const rootRouteChildren: RootRouteChildren = {
   CorporaCorpusIdTextIdRouteRoute: CorporaCorpusIdTextIdRouteRouteWithChildren,
   CorporaCorpusIdIndexRoute: CorporaCorpusIdIndexRoute,
 };
-
-export const routeTree = rootRoute
+export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>();
-
-/* ROUTE_MANIFEST_START
-{
-  "routes": {
-    "__root__": {
-      "filePath": "__root.tsx",
-      "children": [
-        "/",
-        "/doc/$id",
-        "/doc/api",
-        "/corpora/",
-        "/corpora/$corpusId/$textId",
-        "/corpora/$corpusId/"
-      ]
-    },
-    "/": {
-      "filePath": "index.tsx"
-    },
-    "/doc/$id": {
-      "filePath": "doc/$id.tsx"
-    },
-    "/doc/api": {
-      "filePath": "doc/api.tsx"
-    },
-    "/corpora/": {
-      "filePath": "corpora/index.tsx"
-    },
-    "/corpora/$corpusId/$textId": {
-      "filePath": "corpora/$corpusId/$textId/route.tsx",
-      "children": [
-        "/corpora/$corpusId/$textId/animals",
-        "/corpora/$corpusId/$textId/entities",
-        "/corpora/$corpusId/$textId/fulltext",
-        "/corpora/$corpusId/$textId/plants",
-        "/corpora/$corpusId/$textId/"
-      ]
-    },
-    "/corpora/$corpusId/": {
-      "filePath": "corpora/$corpusId/index.tsx"
-    },
-    "/corpora/$corpusId/$textId/animals": {
-      "filePath": "corpora/$corpusId/$textId/animals.tsx",
-      "parent": "/corpora/$corpusId/$textId"
-    },
-    "/corpora/$corpusId/$textId/entities": {
-      "filePath": "corpora/$corpusId/$textId/entities.tsx",
-      "parent": "/corpora/$corpusId/$textId"
-    },
-    "/corpora/$corpusId/$textId/fulltext": {
-      "filePath": "corpora/$corpusId/$textId/fulltext.tsx",
-      "parent": "/corpora/$corpusId/$textId"
-    },
-    "/corpora/$corpusId/$textId/plants": {
-      "filePath": "corpora/$corpusId/$textId/plants.tsx",
-      "parent": "/corpora/$corpusId/$textId"
-    },
-    "/corpora/$corpusId/$textId/": {
-      "filePath": "corpora/$corpusId/$textId/index.tsx",
-      "parent": "/corpora/$corpusId/$textId"
-    }
-  }
-}
-ROUTE_MANIFEST_END */

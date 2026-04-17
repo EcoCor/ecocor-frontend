@@ -8,15 +8,15 @@
     "url": "https://github.com/EcoCor/ecocor-frontend.git"
   },
   "dependencies": {
-    "@dracor/react": "1.0.0-beta.1",
+    "@dracor/react": "1.1.0",
     "@fortawesome/fontawesome-svg-core": "^7.2.0",
     "@fortawesome/free-brands-svg-icons": "^7.2.0",
     "@fortawesome/free-solid-svg-icons": "^7.2.0",
     "@fortawesome/react-fontawesome": "^3.3.0",
     "@headlessui/react": "^2.2.10",
     "@isoterik/react-word-cloud": "^1.3.0",
-    "@tanstack/react-router": "^1.117.1",
-    "@tanstack/react-router-devtools": "^1.117.1",
+    "@tanstack/react-router": "^1.168.22",
+    "@tanstack/react-router-devtools": "^1.166.13",
     "@tanstack/react-table": "^8.21.3",
     "CETEIcean": "^1.9.5",
     "axios": "^1.15.0",
@@ -31,13 +31,13 @@
     "@eslint/js": "^9.25.1",
     "@tailwindcss/postcss": "^4.2.2",
     "@tailwindcss/vite": "^4.2.2",
-    "@tanstack/router-plugin": "^1.117.1",
+    "@tanstack/router-plugin": "^1.167.22",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
     "@types/jest": "^29.5.14",
-    "@types/node": "^22.15.0",
+    "@types/node": "^25.6.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@types/swagger-ui-react": "^5.18.0",
@@ -62,7 +62,8 @@
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
       "prettier --write"
-    ]
+    ],
+    "!src/*.gen.ts": []
   },
   "scripts": {
     "prepare": "husky",
