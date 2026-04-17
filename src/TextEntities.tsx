@@ -3,7 +3,7 @@ import { ColumnDef } from '@tanstack/react-table';
 import { IdLink, Table } from '@dracor/react';
 import { getTextEntities } from './api';
 import { Entity } from './types';
-// import WordCloud from './WordCloud';
+import WordCloud, { type CloudWord } from './WordCloud';
 
 export interface Props {
   corpusId: string;
@@ -21,9 +21,21 @@ export default function TextEntities({ corpusId, textId, type }: Props) {
       setLoading(true);
       setEntities([]);
       try {
-        const resp = await getTextEntities(corpusId!, textId!, type);
-        if (isMounted) {
-          setEntities(resp.data);
+        if (type === 'Animal' || type === 'Plant') {
+          const resp = await getTextEntities(corpusId!, textId!, type);
+          if (isMounted) {
+            setEntities(
+              resp.data.map((entity) => ({
+                ...entity,
+                kind: type,
+              }))
+            );
+          }
+        } else {
+          const resp = await getTextEntities(corpusId, textId);
+          if (isMounted) {
+            setEntities(resp.data);
+          }
         }
       } catch (error) {
         console.log(error);
@@ -37,7 +49,7 @@ export default function TextEntities({ corpusId, textId, type }: Props) {
       isMounted = false;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [type]);
+  }, [corpusId, textId, type]);
 
   const columns = useMemo<ColumnDef<Entity>[]>(
     () => [
@@ -64,16 +76,22 @@ export default function TextEntities({ corpusId, textId, type }: Props) {
     []
   );
 
-  const words = entities.map(({ name, metrics: { overallFrequency } }) => ({
-    text: name,
-    value: overallFrequency,
-  }));
-  console.log({ words });
+  const words: CloudWord[] = entities.map(
+    ({ name, metrics: { overallFrequency }, type }) => ({
+      text: name,
+      value: overallFrequency,
+      kind: type,
+    })
+  );
 
   return (
-    <div className="mt-2">
+    <div className="mt-2 space-y-6">
       {loading && <p>loading...</p>}
-      {/* {words.length > 0 && <WordCloud words={words} />} */}
+      {words.length > 0 && (
+        <section className="rounded-3xl bg-white/80 p-4 shadow-sm ring-1 ring-slate-200">
+          <WordCloud words={words} />
+        </section>
+      )}
       {entities.length > 0 && (
         <Table
           data={entities}

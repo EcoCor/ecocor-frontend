@@ -5,7 +5,8 @@ import { ColumnDef } from '@tanstack/react-table';
 import { IdLink, Table } from '@dracor/react';
 import { getCorpus, getCorpusEntities, getCorpusTexts } from './api';
 import { CorpusData, Entity, Text } from './types';
-// import WordCloud from './WordCloud';
+import WordCloud from './WordCloud';
+import { type CloudWord } from './WordCloud';
 
 export interface Props {
   id: string;
@@ -56,7 +57,7 @@ export default function Corpus({ id }: Props) {
       setLoadingEntities(true);
       setEntities([]);
       try {
-        const resp = await getCorpusEntities(id!);
+        const resp = await getCorpusEntities(id);
         if (isMounted) {
           setEntities(resp.data);
         }
@@ -73,11 +74,13 @@ export default function Corpus({ id }: Props) {
     };
   }, [id]);
 
-  const words = entities.map(({ name, metrics: { overallFrequency } }) => ({
-    text: name,
-    value: overallFrequency,
-  }));
-  console.log({ words });
+  const words: CloudWord[] = entities.map(
+    ({ name, metrics: { overallFrequency }, type }) => ({
+      text: name,
+      value: overallFrequency,
+      kind: type,
+    })
+  );
 
   const columns = useMemo<ColumnDef<Text>[]>(
     () => [
@@ -147,12 +150,16 @@ export default function Corpus({ id }: Props) {
       </Helmet>
       {loading && <p>loading...</p>}
       {corpus && (
-        <section>
+        <section className="space-y-6">
           <h1>{corpus.title}</h1>
           {loadingEntities && (
             <div className="text-center">Loading entities...</div>
           )}
-          {/* {words.length > 0 && <WordCloud words={words} />} */}
+          {words.length > 0 && (
+            <section className="rounded-3xl bg-white/80 p-4 shadow-sm ring-1 ring-slate-200">
+              <WordCloud words={words} />
+            </section>
+          )}
           {texts.length > 0 && <Table data={texts} columns={columns} />}
         </section>
       )}
