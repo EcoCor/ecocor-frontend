@@ -17,6 +17,8 @@ export default function Topnav() {
             // @ts-expect-error - FIXME `to`
             { to: '/doc/about', label: 'What is EcoCor' },
             // @ts-expect-error - FIXME `to`
+            { to: '/doc/notes-on-ecocor-de', label: 'Notes on EcoCor-DE' },
+            // @ts-expect-error - FIXME `to`
             { to: '/doc/credits', label: 'Credits' },
             // @ts-expect-error - FIXME `to`
             { to: '/doc/imprint-and-gdpr', label: 'Imprint and GDPR' },
