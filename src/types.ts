@@ -1,3 +1,9 @@
+export interface ApiInfo {
+  base: string;
+  name: string;
+  version: string;
+  existdb: string;
+}
 export interface Author {
   name: string;
   ref?: string;

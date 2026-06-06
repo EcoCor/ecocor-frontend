@@ -4,7 +4,7 @@ import axios, {
   CancelTokenSource,
   AxiosResponse,
 } from 'axios';
-import { CorpusData, Text, Entity } from './types';
+import { ApiInfo, CorpusData, Text, Entity } from './types';
 
 const apiUrl = import.meta.env.VITE_ECOCOR_API;
 
@@ -26,6 +26,11 @@ async function fetchData<T>(
     method: options?.method,
     cancelToken: options?.cancelTokenSource?.token,
   });
+}
+
+export async function getApiInfo(): Promise<AxiosResponse<ApiInfo>> {
+  const url = `${apiUrl}/info`;
+  return await fetchData<ApiInfo>(url);
 }
 
 export async function getCorpora(): Promise<AxiosResponse<CorpusData[]>> {

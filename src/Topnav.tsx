@@ -1,12 +1,10 @@
 import { NavBar } from '@dracor/react';
-import packageInfo from '../package.json';
 import logo from './images/ecocor.svg';
 
 export default function Topnav() {
   return (
     <NavBar
-      title="EcoCor"
-      version={packageInfo.version}
+      title="EcoCor - ecocritical corpora"
       logo={logo}
       logoClass="animate-spin-slow infinite"
       gitHubUrl="https://github.com/EcoCor"
