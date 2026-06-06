@@ -19,6 +19,7 @@ import { Route as CorporaCorpusIdTextIdIndexRouteImport } from './routes/corpora
 import { Route as CorporaCorpusIdTextIdPlantsRouteImport } from './routes/corpora/$corpusId/$textId/plants'
 import { Route as CorporaCorpusIdTextIdFulltextRouteImport } from './routes/corpora/$corpusId/$textId/fulltext'
 import { Route as CorporaCorpusIdTextIdEntitiesRouteImport } from './routes/corpora/$corpusId/$textId/entities'
+import { Route as CorporaCorpusIdTextIdDownloadsRouteImport } from './routes/corpora/$corpusId/$textId/downloads'
 import { Route as CorporaCorpusIdTextIdAnimalsRouteImport } from './routes/corpora/$corpusId/$textId/animals'
 
 const IndexRoute = IndexRouteImport.update({
@@ -76,6 +77,12 @@ const CorporaCorpusIdTextIdEntitiesRoute =
     path: '/entities',
     getParentRoute: () => CorporaCorpusIdTextIdRouteRoute,
   } as any)
+const CorporaCorpusIdTextIdDownloadsRoute =
+  CorporaCorpusIdTextIdDownloadsRouteImport.update({
+    id: '/downloads',
+    path: '/downloads',
+    getParentRoute: () => CorporaCorpusIdTextIdRouteRoute,
+  } as any)
 const CorporaCorpusIdTextIdAnimalsRoute =
   CorporaCorpusIdTextIdAnimalsRouteImport.update({
     id: '/animals',
@@ -91,6 +98,7 @@ export interface FileRoutesByFullPath {
   '/corpora/$corpusId/$textId': typeof CorporaCorpusIdTextIdRouteRouteWithChildren
   '/corpora/$corpusId/': typeof CorporaCorpusIdIndexRoute
   '/corpora/$corpusId/$textId/animals': typeof CorporaCorpusIdTextIdAnimalsRoute
+  '/corpora/$corpusId/$textId/downloads': typeof CorporaCorpusIdTextIdDownloadsRoute
   '/corpora/$corpusId/$textId/entities': typeof CorporaCorpusIdTextIdEntitiesRoute
   '/corpora/$corpusId/$textId/fulltext': typeof CorporaCorpusIdTextIdFulltextRoute
   '/corpora/$corpusId/$textId/plants': typeof CorporaCorpusIdTextIdPlantsRoute
@@ -103,6 +111,7 @@ export interface FileRoutesByTo {
   '/corpora': typeof CorporaIndexRoute
   '/corpora/$corpusId': typeof CorporaCorpusIdIndexRoute
   '/corpora/$corpusId/$textId/animals': typeof CorporaCorpusIdTextIdAnimalsRoute
+  '/corpora/$corpusId/$textId/downloads': typeof CorporaCorpusIdTextIdDownloadsRoute
   '/corpora/$corpusId/$textId/entities': typeof CorporaCorpusIdTextIdEntitiesRoute
   '/corpora/$corpusId/$textId/fulltext': typeof CorporaCorpusIdTextIdFulltextRoute
   '/corpora/$corpusId/$textId/plants': typeof CorporaCorpusIdTextIdPlantsRoute
@@ -117,6 +126,7 @@ export interface FileRoutesById {
   '/corpora/$corpusId/$textId': typeof CorporaCorpusIdTextIdRouteRouteWithChildren
   '/corpora/$corpusId/': typeof CorporaCorpusIdIndexRoute
   '/corpora/$corpusId/$textId/animals': typeof CorporaCorpusIdTextIdAnimalsRoute
+  '/corpora/$corpusId/$textId/downloads': typeof CorporaCorpusIdTextIdDownloadsRoute
   '/corpora/$corpusId/$textId/entities': typeof CorporaCorpusIdTextIdEntitiesRoute
   '/corpora/$corpusId/$textId/fulltext': typeof CorporaCorpusIdTextIdFulltextRoute
   '/corpora/$corpusId/$textId/plants': typeof CorporaCorpusIdTextIdPlantsRoute
@@ -132,6 +142,7 @@ export interface FileRouteTypes {
     | '/corpora/$corpusId/$textId'
     | '/corpora/$corpusId/'
     | '/corpora/$corpusId/$textId/animals'
+    | '/corpora/$corpusId/$textId/downloads'
     | '/corpora/$corpusId/$textId/entities'
     | '/corpora/$corpusId/$textId/fulltext'
     | '/corpora/$corpusId/$textId/plants'
@@ -144,6 +155,7 @@ export interface FileRouteTypes {
     | '/corpora'
     | '/corpora/$corpusId'
     | '/corpora/$corpusId/$textId/animals'
+    | '/corpora/$corpusId/$textId/downloads'
     | '/corpora/$corpusId/$textId/entities'
     | '/corpora/$corpusId/$textId/fulltext'
     | '/corpora/$corpusId/$textId/plants'
@@ -157,6 +169,7 @@ export interface FileRouteTypes {
     | '/corpora/$corpusId/$textId'
     | '/corpora/$corpusId/'
     | '/corpora/$corpusId/$textId/animals'
+    | '/corpora/$corpusId/$textId/downloads'
     | '/corpora/$corpusId/$textId/entities'
     | '/corpora/$corpusId/$textId/fulltext'
     | '/corpora/$corpusId/$textId/plants'
@@ -244,6 +257,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CorporaCorpusIdTextIdEntitiesRouteImport
       parentRoute: typeof CorporaCorpusIdTextIdRouteRoute
     }
+    '/corpora/$corpusId/$textId/downloads': {
+      id: '/corpora/$corpusId/$textId/downloads'
+      path: '/downloads'
+      fullPath: '/corpora/$corpusId/$textId/downloads'
+      preLoaderRoute: typeof CorporaCorpusIdTextIdDownloadsRouteImport
+      parentRoute: typeof CorporaCorpusIdTextIdRouteRoute
+    }
     '/corpora/$corpusId/$textId/animals': {
       id: '/corpora/$corpusId/$textId/animals'
       path: '/animals'
@@ -256,6 +276,7 @@ declare module '@tanstack/react-router' {
 
 interface CorporaCorpusIdTextIdRouteRouteChildren {
   CorporaCorpusIdTextIdAnimalsRoute: typeof CorporaCorpusIdTextIdAnimalsRoute
+  CorporaCorpusIdTextIdDownloadsRoute: typeof CorporaCorpusIdTextIdDownloadsRoute
   CorporaCorpusIdTextIdEntitiesRoute: typeof CorporaCorpusIdTextIdEntitiesRoute
   CorporaCorpusIdTextIdFulltextRoute: typeof CorporaCorpusIdTextIdFulltextRoute
   CorporaCorpusIdTextIdPlantsRoute: typeof CorporaCorpusIdTextIdPlantsRoute
@@ -265,6 +286,7 @@ interface CorporaCorpusIdTextIdRouteRouteChildren {
 const CorporaCorpusIdTextIdRouteRouteChildren: CorporaCorpusIdTextIdRouteRouteChildren =
   {
     CorporaCorpusIdTextIdAnimalsRoute: CorporaCorpusIdTextIdAnimalsRoute,
+    CorporaCorpusIdTextIdDownloadsRoute: CorporaCorpusIdTextIdDownloadsRoute,
     CorporaCorpusIdTextIdEntitiesRoute: CorporaCorpusIdTextIdEntitiesRoute,
     CorporaCorpusIdTextIdFulltextRoute: CorporaCorpusIdTextIdFulltextRoute,
     CorporaCorpusIdTextIdPlantsRoute: CorporaCorpusIdTextIdPlantsRoute,

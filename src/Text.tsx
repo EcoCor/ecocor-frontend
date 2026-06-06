@@ -77,6 +77,8 @@ export default function Text({ corpusId, textId }: Props) {
               { label: 'Plants', to: `${p}/plants`, active: false },
               // @ts-expect-error - FIXME `to`
               { label: 'Full text', to: `${p}/fulltext`, active: false },
+              // @ts-expect-error - FIXME `to`
+              { label: 'Downloads', to: `${p}/downloads`, active: false },
             ]}
           />
           <Outlet />
