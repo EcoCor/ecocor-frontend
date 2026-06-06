@@ -17,6 +17,9 @@ export interface Props {
   enableTooltip?: boolean;
 }
 
+const MIN_FONT_SIZE = 12;
+const MAX_FONT_SIZE = 60;
+
 export default function WordCloud({
   words,
   height = 360,
@@ -37,6 +40,9 @@ export default function WordCloud({
   );
 
   const contentHeight = Math.max(0, height - paddingSize * 2);
+
+  const minVal = useMemo(() => Math.min(...words.map((w) => w.value)), [words]);
+  const maxVal = useMemo(() => Math.max(...words.map((w) => w.value)), [words]);
 
   useEffect(() => {
     const element = containerRef.current;
@@ -96,7 +102,11 @@ export default function WordCloud({
             font="Rubik"
             fontStyle="normal"
             fontWeight="500"
-            fontSize={(word) => Math.sqrt(word.value) * 4}
+            fontSize={(word) => {
+              if (maxVal === minVal) return (MIN_FONT_SIZE + MAX_FONT_SIZE) / 2;
+              const t = (word.value - minVal) / (maxVal - minVal);
+              return MIN_FONT_SIZE + t * (MAX_FONT_SIZE - MIN_FONT_SIZE);
+            }}
             rotate={(_word, index) => (index % 2 === 0 ? 0 : 90)}
             fill={(word) => {
               const typedWord = word as CloudWord;
