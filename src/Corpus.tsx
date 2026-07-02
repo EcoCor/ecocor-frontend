@@ -92,7 +92,7 @@ export default function Corpus({ id }: Props) {
         },
         cell: (info) => (
           <div>
-            {info.row.original.authors.map(({ name, ref }) => (
+            {info.row.original.authors?.map(({ name, ref }) => (
               <div key={name}>
                 <span>{name}</span>
                 <br />
@@ -112,10 +112,10 @@ export default function Corpus({ id }: Props) {
         ),
       },
       {
-        accessorKey: 'dates',
+        accessorKey: 'referenceYear',
         header: 'Year',
-        accessorFn: (row) => row.dates?.yearNormalized.toString() || '',
-        cell: (info) => <span>{info.row.original.dates?.yearNormalized}</span>,
+        accessorFn: (row) => row.referenceYear || '',
+        cell: (info) => <span>{info.row.original.referenceYear}</span>,
       },
       {
         accessorKey: 'chapters',
