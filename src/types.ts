@@ -9,28 +9,45 @@ export interface Author {
   ref?: string;
 }
 
+export interface SourceLink {
+  url: string;
+  text?: string;
+}
+
+export interface Source {
+  bibl: string;
+  type?: string;
+  title?: string;
+  author?: string;
+  publisher?: string;
+  year?: string;
+  placePublished?: string;
+  links?: SourceLink[];
+}
+
 export interface Text {
   id: string;
   name: string;
-  authors: Author[];
+  corpus: string;
   title: string;
-  source: string;
-  sourceUrl: string;
-  dates?: {
-    yearNormalized: string;
-    yearWritten?: string;
-    yearPrinted?: string;
+  authors?: Author[];
+  ref?: string;
+  refs?: string[];
+  sources?: Source[];
+  commit?: string;
+  referenceYear?: string;
+  metrics: {
+    biodiversityIndex?: number;
+    numOfAnimals?: number;
+    numOfChapters?: number;
+    numOfEntities?: number;
+    numOfEntityTypes?: number;
+    numOfParagraphs?: number;
+    numOfPlants?: number;
+    numOfWords?: number;
   };
-  metrics?: {
-    biodiversityIndex: number;
-    numOfAnimals: number;
-    numOfChapters: number;
-    numOfEntities: number;
-    numOfEntityTypes: number;
-    numOfParagraphs: number;
-    numOfPlants: number;
-    numOfWords: number;
-  };
+  corpusUrl: string;
+  entitiesUrl: string;
 }
 
 export interface CorpusMetrics {
