@@ -37,6 +37,11 @@ export default defineConfig(({ mode }) => {
       setupFiles: './src/setupTests.ts',
       css: true,
       reporters: ['verbose'],
+      server: {
+        deps: {
+          inline: ['@dracor/react', 'react-copy-to-clipboard'],
+        },
+      },
     },
   };
 });
