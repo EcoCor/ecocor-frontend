@@ -7,10 +7,9 @@ on:
 
 jobs:
   production:
-    uses: EcoCor/ecocor-frontend/.github/workflows/deployment.yml@main
+    uses: ./.github/workflows/deployment.yml
+    # environment secrets only reach the reusable workflow this way
+    secrets: inherit
     with:
+      environment: production
       host: ecocor.org
-      deploy-path: /var/www/html
-    secrets:
-      deploy-key: ${{ secrets.ECOCOR_DEPLOY_KEY }}
-      deploy-user: ${{ secrets.ECOCOR_DEPLOY_USER }}
